@@ -3,8 +3,84 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #493b3b;
-    color: #ec0e0e;
+    background-color: #fffafa;
+}
+
+main {
+    margin: 0px 0px 0px 0px;
+}
+
+#logo {
+    margin: 0px 0px 0px 0px;
+}
+
+#menu {
+    margin: 0px 0px 0px 0px;
+}
+
+.menu-navegacao {
+    margin: 0px 0px 0px 0px;
+}
+
+#btn-login {
+    margin: 0px 0px 0px 0px;
+}
+
+.conteudo-principal {
+    margin: 0px 0px 0px 0px;
+}
+
+.conteudo-titulo {
+    margin: 0px 0px 0px 0px;
+}
+
+#categorias {
+    margin: 0px 0px 0px 0px;
+}
+
+#data {
+    margin: 0px 0px 0px 0px;
+}
+
+#pesquisa {
+    margin: 0px 0px 0px 0px;
+}
+
+#btn-pesquisa {
+    margin: 0px 0px 0px 0px;
+}
+
+.banner-novo1 {
+    margin: 0px 0px 0px 0px;
+}
+
+.banner-novo2 {
+    margin: 0px 0px 0px 0px;
+}
+
+.banner-novo3 {
+    margin: 0px 0px 0px 0px;
+}
+
+.banner-novo4 {
+    margin: 0px 0px 0px 0px;
+}
+
+.data {
+    margin: 0px 0px 0px 0px;
+}
+
+.evento-novo {
+    margin: 0px 0px 0px 0px;
+}
+
+.local {
+    margin: 0px 0px 0px 0px;
+}
+
+.banner-novo2 {
+    margin: 0px 0px 0px 0px;
 }
