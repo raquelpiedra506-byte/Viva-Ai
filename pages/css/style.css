@@ -9,6 +9,40 @@ body {
     background-color: #edebea;
     color: #040404;
 }
+.calendar {
+    display: none;
+    justify-content: center;
+    margin-top: 50px; 
+    width: 350px; 
+    border: 1px solid #ccc; 
+    padding: 20px; 
+    border-radius: 8px; }
+
+header { 
+    text-align: center; 
+    font-weight: bold; 
+    margin-bottom: 15px; }
+
+.semanas, .dias { 
+    display: grid; 
+    grid-template-columns: repeat(7, 1fr); text-align: center; }
+
+.semanas div { 
+    font-weight: bold; 
+    color: #555; }
+
+.dias div { 
+    padding: 10px 0; 
+    cursor: pointer; 
+    margin: 2px; 
+    border-radius: 4px; }
+
+.dias div:hover { 
+    background-color: #f0f0f0; }
+
+.evento { 
+    background-color: #bf00ff; 
+    color: white; font-weight: bold; }
 
 header {
     background-image: linear-gradient(90deg, rgb(0, 0, 0), rgb(243, 103, 3));
