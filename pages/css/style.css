@@ -25,7 +25,8 @@ header {
 
 .semanas, .dias { 
     display: grid; 
-    grid-template-columns: repeat(7, 1fr); text-align: center; }
+    grid-template-columns: repeat(7, 1fr); 
+    text-align: center; }
 
 .semanas div { 
     font-weight: bold; 
@@ -42,7 +43,8 @@ header {
 
 .evento { 
     background-color: #bf00ff; 
-    color: white; font-weight: bold; }
+    color: white; 
+    font-weight: bold; }
 
 header {
     background-image: linear-gradient(90deg, rgb(0, 0, 0), rgb(243, 103, 3));
@@ -52,6 +54,64 @@ header {
     color: #ffffff;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
+.pesquisa-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    background-color: #000000;
+    border-radius: 20px;
+    margin-left: 20px auto;
+    width: 400px;
+    padding: 5px 10px;
+    color: #ffffff; 
+}
+#pesquisa {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    background-color: transparent;
+    outline: none;
+}
+input {
+    color: #ffffff; 
+}
+.pesquisa-container button {
+    padding: 8px 12px;
+    border: none;
+    background-color: #f36703;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 20px;
+}
+.pesquisa-container button:hover {
+    transition: 0.7s;
+    background-color: #ffaf2f;
+}
+
+article {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.banner-novo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f36703;
+    color: #fff;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 8px;
+    width: 200px; 
+}
+
+
+
+
 
 .fa-solid fa-user {
     align-items: end;
@@ -61,8 +121,6 @@ header {
     display: flex;
     align-items: center;
 }
-
-
 
 .menu {
     display: flex;
@@ -98,8 +156,4 @@ footer {
     padding: 10px 0px 30px 0px;
     text-align: center;
     color: #fffbfb;
-}
-
-.footer{
-    
 }
