@@ -22,30 +22,5 @@ const dados = [
         hora: "20:00",
         preco: "R$ 90,00",
         "evento-novo": "Stand-up Comedy"
-    },
+    }
 ];
-
-const eventos = document.getElementById(".banner-novo");
-const pesquisaInput = document.getElementById("#pesquisa");
-
-const displayEventos = (dados) => {
-    eventos.innerHTML = "";
-    dados.forEach(e => {
-        eventos.innerHTML += `
-            <div class="banner-novo">
-                <h5 class="data">${e.data}</h5>
-                <h5 class="hora">${e.hora}</h5>
-                <h6 class="preco">${e.preco}</h6>
-                <h2 class="evento-novo">${e["evento-novo"]}</h2>
-            </div>
-        `;
-    })
-}
-
-pesquisaInput.addEventListener("input", (e) => {
-    const pesquisa = e.target.value.toLowerCase();
-    const eventosFiltrados = dados.filter(e => e["evento-novo"].toLowerCase().includes(pesquisa));
-    displayEventos(eventosFiltrados);
-});
-
-window.addEventListener("load", displayEventos.bind(null, dados));

@@ -9,6 +9,7 @@
         <link href="../pages/css/style.css" rel="stylesheet">
         <script src="../pages/js/app.js" defer></script>
         <script src="../pages/js/dados.js" defer></script>
+
     </head>
 
     <body>
@@ -99,8 +100,11 @@
                     <div class="pesquisa-container">
                         <label for="pesquisa">
                             <input placeholder="Pesquisa" type="text" id="pesquisa">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                            <button type="submit" id="btn-pesquisa">Pesquisar</button>
+                            <button type="button" id="btn-pesquisa">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                Pesquisar
+                            </button>
+
                         </label>
                     </div>
 
@@ -109,78 +113,11 @@
 
             <article>
                 <div class="conteudo-descricao">
-                <p>O site <strong>VIVA AI</strong> será uma experiência inesquecível para todos os entusiastas que buscam descobrir e aprender sobre varias areas que o nosso evento ira abordar.</p>
-                <p>Teremos varias palestras, workshops e atividades interativas.</p>
-                <p></p>
-                </div>
-            
-                <div class="banner-novo">
-                    <h5 class="data">2026-09-15</h5>
-                    <h5 class="hora">10:45</h5>
-                    <h6 class="preco">R$ 30,00</h6>
-                    <h2 class="evento-novo">Musicais</h2>        
-                    <button class="favorito">
-                        <i class="fa-regular fa-star"></i>
-                    </button>
-                    <p class="local">Teatro Municipal</p>
-                    <aside>
-                        <img src="" alt="">
-                    </aside>
-                    <button class="btn-saiba-mais">
-                    Saiba mais
-                    </button>
+                    <p>O site <strong>VIVA AI</strong> será uma experiência inesquecível para todos os entusiastas que buscam descobrir e aprender sobre varias areas que o nosso evento ira abordar.</p>
+                    <p>Teremos varias palestras, workshops e atividades interativas.</p>
                 </div>
 
-                <div class="banner-novo">
-                    <h5 class="data">20/09/2026</h5>
-                    <h5 class="hora">14:30</h5>
-                    <h6 class="preco">R$ 20,00</h6>
-                    <h2 class="evento-novo">Culturais</h2>
-                    <button class="favorito">
-                        <i class="fa-regular fa-star"></i>
-                    </button>
-                    <p class="local">Centro de Eventos</p>
-                    <aside>
-                        <img src="" alt="">
-                    </aside>
-                    <button class="btn-saiba-mais">
-                    Saiba mais
-                    </button>
-                </div>
-                
-                <div class="banner-novo">
-                    <h5 class="data">21/09/2026</h5>
-                    <h5 class="hora">19:00</h5>
-                    <h6 class="preco">R$ 15,00</h6>
-                    <h2 class="evento-novo">Esportivos</h2>
-                    <button class="favorito">
-                        <i class="fa-regular fa-star"></i>
-                    </button>
-                    <p class="local">Estádio Municipal</p>
-                    <aside>
-                        <img src="" alt="">
-                    </aside>
-                    <button class="btn-saiba-mais">
-                    Saiba mais
-                    </button>
-                </div>
-                
-                <div class="banner-novo">
-                    <h5 class="data">22/09/2026</h5>
-                    <h5 class="hora">15:00</h5>
-                    <h6 class="preco">R$ 10,00</h6>
-                    <h2 class="evento-novo">Religiosos</h2>
-                    <button class="favorito">
-                        <i class="fa-regular fa-star"></i>
-                    </button>
-                    <p class="local">Igreja da Comunidade</p>
-                    <aside>
-                        <img src="" alt="">
-                    </aside>
-                    <button class="btn-saiba-mais">
-                    Saiba mais
-                    </button>
-                </div>                
+                <div id="lista-eventos"></div>
             </article>
 
             <footer>
