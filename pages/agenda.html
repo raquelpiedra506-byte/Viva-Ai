@@ -1,15 +1,89 @@
-    <!DOCTYPE html>
-    <html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda | Viva Ai</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="../pages/css/style.css" rel="stylesheet">
+    <script src="../pages/js/dados.js" defer></script>
+    <script src="../pages/js/app.js" defer></script>
+</head>
+<body class="pagina-agenda">
+     <header>
 
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Viva ai</title>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-            <link href="../pages/css/style.css" rel="stylesheet">
-            <script src="../pages/js/app.js" defer></script>
-            <script src="../pages/js/dados.js" defer></script>
-        </head>
-        <body>
-        </body>
-    </html>
+            <div id="logo">
+                <img src="../pages/assents/img/viva-ai.png" alt="Logo Viva Ai" width="100" height="100">
+            </div>
+
+            <nav id="menu">
+                <ul class="menu-navegacao">
+                
+                    <li><a href="../pages/inicio.html">Inicio</a></li>
+                
+                    <li id="agenda">
+                <a href="#">Agenda</a>
+                </li>
+                
+                    <li><a href="../pages/favoritos.html">Favorito</a></li>
+                
+                    <li><a href="../pages/minhas-reservas.html">Minhas reservas</a></li>
+                
+                </ul>
+                
+                <div class="calendar">
+                
+                    <button type="button" id="fechar">X</button>
+                
+                    <div class="header-agenda" id="mes-ano"></div>
+                
+                    <div class="semanas">
+                        <div>Dom</div>
+                        <div>Seg</div>
+                        <div>Ter</div>
+                        <div>Qua</div>
+                        <div>Qui</div>
+                        <div>Sex</div>
+                        <div>Sáb</div>
+                    </div>
+                
+                    <div class="dias" id="dias-calendario"></div>
+                
+                    <div class="eventos" id="eventos"></div>
+                
+                    <div class="btn-agenda">
+                <button type="button" id="btn-anterior">Anterior</button>
+                <button type="button" id="btn-proximo">Próximo</button>
+                </div>
+                
+                </div>
+            </nav>
+
+            <button type="button">
+                <i class="fa-solid fa-user"></i>
+            </button>
+
+        </header>
+
+    <main class="conteudo-agenda">
+        <h1>Minha agenda</h1>
+        <p class="subtitulo">Veja os eventos e organize seus compromissos.</p>
+
+        <section class="calendario-agenda" aria-label="Calendário">
+            <div class="titulo-calendario">
+                <button id="btn-anterior" type="button" aria-label="Mês anterior">&lt;</button>
+                <h2 id="mes-ano"></h2>
+                <button id="btn-proximo" type="button" aria-label="Próximo mês">&gt;</button>
+            </div>
+            <div class="semanas"><span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span></div>
+            <div class="dias" id="dias-calendario"></div>
+            <p class="mensagem-agenda" id="eventos">Clique em um dia para adicionar um evento.</p>
+        </section>
+
+        <section class="eventos-agenda">
+            <h2>Eventos cadastrados</h2>
+            <div id="lista-eventos"></div>
+        </section>
+    </main>
+</body>
+</html>
