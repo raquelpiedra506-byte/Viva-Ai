@@ -154,6 +154,11 @@ i {
 footer {
     background-image: repeating-linear-gradient(90deg, rgba(243, 103, 3, 0.858), rgb(0, 0, 0));
     padding: 10px 0px 30px 0px;
+    margin: 50px 0px 0px 0px;
     text-align: center;
     color: #fffbfb;
+}
+
+.conteudo-descricao {
+    margin: 20px 0px 20px 25px;
 }
