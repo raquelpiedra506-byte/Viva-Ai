@@ -302,7 +302,7 @@ function mostrarDetalhes(evento) {
         evento.imagem;
 
     document.getElementById("detalhes-descricao").textContent =
-        "Confira as informações deste evento.";
+        evento["detalhes"];
 
     document.getElementById("detalhes-data").textContent =
         evento.data;
