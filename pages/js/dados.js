@@ -9,6 +9,10 @@ const dados = [
         categoria: "Musicais",
         imagem: "assents/img/musicais.png",
         vaga: 150
+        "evento-novo": "Musicais",
+        "detalhes": "Uma experiência especial com apresentações musicais, performances e momentos de entretenimento para todos os públicos.",
+        imagem: "assents/img/musicais.jpg",
+        vaga: 1500
     },
 
     {
@@ -20,6 +24,9 @@ const dados = [
         categoria: "Musicais",
         imagem: "assents/img/festival.jpg",
         vaga: 220
+        "detalhes": "Festival reunindo diferentes estilos musicais, com apresentações ao vivo, artistas convidados e muita música durante o evento.",
+        imagem: "assents/img/festivaldemusica.jpg",
+        vaga: 2200
     },
 
     {
@@ -29,8 +36,9 @@ const dados = [
         preco: "R$ 50,00",
         "evento-novo": "Teatro",
         categoria: "Culturais",
+        "detalhes": "Uma apresentação teatral com uma história envolvente, interpretação dos atores e uma produção preparada para proporcionar uma experiência cultural marcante.",
         imagem: "assents/img/teatro.jpg",
-        vaga: 135
+        vaga: 1350
     },
 
     {
@@ -40,8 +48,9 @@ const dados = [
         preco: "R$ 70,00",
         "evento-novo": "Cinema",
         categoria: "Culturais",
+        "detalhes": "Sessão especial de cinema com uma experiência completa para os amantes da sétima arte, incluindo exibição de filme em ambiente preparado para o público.",
         imagem: "assents/img/cinema.jpg",
-        vaga: 120
+        vaga: 1200
     },
 
     {
@@ -51,8 +60,9 @@ const dados = [
         preco: "R$ 90,00",
         "evento-novo": "Stand-up",
         categoria: "Culturais",
+        "detalhes": "Uma noite de muito humor com apresentações de comediantes, histórias engraçadas e situações do cotidiano transformadas em momentos de diversão.",
         imagem: "assents/img/standup.jpg",
-        vaga: 140
+        vaga: 1400
     },
 
     {
@@ -64,6 +74,9 @@ const dados = [
         categoria: "Culturais",
         imagem: "assents/img/feira.jpg",
         vaga: 160
+        "detalhes": "Feira dedicada à cultura e à diversidade, reunindo artes, música, apresentações e atividades para toda a comunidade.",
+        imagem: "assents/img/festivalcultural.jpg",
+        vaga: 1600
     },
 
     {
@@ -75,6 +88,9 @@ const dados = [
         categoria: "Culturais",
         imagem: "assents/img/exposicao.jpg",
         vaga: 120
+        "detalhes": "Exposição com obras de arte de diferentes estilos e técnicas, proporcionando ao público um momento de apreciação e contato com a produção artística.",
+        imagem: "assents/img/exposiçãodearte.jpg",
+        vaga: 1200
     },
 
     {
@@ -85,6 +101,8 @@ const dados = [
         "evento-novo": "Show ao Vivo",
         categoria: "Musicais",
         imagem: "assents/img/show.jpg",
+        "detalhes": "Show com apresentação musical ao vivo, repertório especial e uma atmosfera preparada para quem gosta de curtir música e entretenimento.",
+        imagem: "assents/img/showaovivo.jpg",
         vaga: "Ilimitada"
     },
 
@@ -97,6 +115,9 @@ const dados = [
         categoria: "Sociais",
         imagem: "assents/img/gastronomia.jpg",
         vaga: 125
+        "detalhes": "Uma celebração da gastronomia com diferentes opções de pratos, sabores e experiências culinárias para os visitantes.",
+        imagem: "assents/img/festivalgastronomia.gif",
+        vaga: 1250
     },
 
     {
@@ -106,8 +127,9 @@ const dados = [
         preco: "R$ 60,00",
         "evento-novo": "Dança",
         categoria: "Culturais",
+        "detalhes": "Apresentação de dança com coreografias, música e performances que exploram diferentes movimentos e estilos artísticos.",
         imagem: "assents/img/danca.jpg",
-        vaga: 132
+        vaga: 1320
     },
 
     {
@@ -117,8 +139,9 @@ const dados = [
         preco: "R$ 55,00",
         "evento-novo": "Palestra",
         categoria: "Educacionais",
+        "detalhes": "Encontro com conteúdo educativo e informativo, proporcionando ao público a oportunidade de aprender, refletir e trocar conhecimentos sobre o tema apresentado.",
         imagem: "assents/img/palestra.jpg",
-        vaga: 170
+        vaga: 1700
     },
 
     {
@@ -130,6 +153,9 @@ const dados = [
         categoria: "Culturais",
         imagem: "assents/img/festival-cinema.jpg",
         vaga: 165
+        "detalhes": "Festival dedicado ao cinema, com uma programação especial de filmes e uma oportunidade para o público conhecer diferentes histórias e produções cinematográficas.",
+        imagem: "assents/img/festivaldecinema.jpg",
+        vaga: 1650
     },
 
     {
@@ -141,6 +167,9 @@ const dados = [
         categoria: "Culturais",
         imagem: "assents/img/artesanato.jpg",
         vaga: 220
+        "detalhes": "Feira com produtos artesanais, trabalhos manuais e peças criativas produzidas por artesãos, oferecendo ao público uma experiência de cultura e criatividade.",
+        imagem: "assents/img/feiradeartesanato.jpg",
+        vaga: 2200
     },
 
     {
@@ -152,6 +181,9 @@ const dados = [
         categoria: "Musicais",
         imagem: "assents/img/show-nacional.jpg",
         vaga: 300
+        "detalhes": "Grande apresentação musical com atrações de destaque nacional, repertório especial e uma noite preparada para os fãs de música ao vivo.",
+        imagem: "assents/img/shownacional.jpg",
+        vaga: 3000
     },
 
     {
@@ -163,6 +195,9 @@ const dados = [
         categoria: "Musicais",
         imagem: "assents/img/teatro-musical.jpg",
         vaga: 130
+        "detalhes": "Espetáculo que combina teatro, música, dança e interpretação em uma apresentação completa e envolvente para o público.",
+        imagem: "assents/img/teatromusical.gif",
+        vaga: 1300
     },
 
     {
@@ -174,6 +209,9 @@ const dados = [
         categoria: "Tecnológicos",
         imagem: "assents/img/geek.jpg",
         vaga: 175
+        "detalhes": "Evento voltado para fãs da cultura geek, com atrações relacionadas a filmes, séries, jogos, quadrinhos, tecnologia e entretenimento.",
+        imagem: "assents/img/eventogeek.jpg",
+        vaga: 1750
     },
 
     {
@@ -183,8 +221,9 @@ const dados = [
         preco: "R$ 85,00",
         "evento-novo": "Comédia",
         categoria: "Culturais",
+        "detalhes": "Uma noite dedicada ao humor e à diversão, com apresentações de comédia, histórias divertidas e momentos para aproveitar com os amigos.",
         imagem: "assents/img/comedia.jpg",
-        vaga: 150
+        vaga: 1500
     },
 
     {
@@ -195,6 +234,8 @@ const dados = [
         "evento-novo": "Feira Cultural",
         categoria: "Culturais",
         imagem: "assents/img/feira-cultural.jpg",
+        "detalhes": "Evento aberto ao público com atrações culturais, apresentações, atividades e espaços dedicados à arte, cultura e convivência.",
+        imagem: "assents/img/feiracultural.jpg",
         vaga: "Livre ao público."
     }
 

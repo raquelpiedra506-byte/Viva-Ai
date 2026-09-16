@@ -170,14 +170,11 @@ main {
 }
 
 .conteudo-principal {
-    padding: 20px 20px 35px;
     text-align: center;
 }
 
 .conteudo-banner img {
     width: 100%;
-    border: 1px solid #ddd;
-    border-radius: 15px;
 }
 
 /* FILTROS */
@@ -192,8 +189,10 @@ form {
 
 select {
     width: 190px;
+    margin: 10px;
     padding: 12px 15px;
     border-radius: 25px;
+    border: 1px solid #d15e00;
     background-color: #000000;
     color: #ffffff;
     font-size: 14px;
@@ -213,7 +212,7 @@ select {
     
     width: 400px;
     padding: 4px 5px 4px 15px;
-    border: 1px solid #ddd;
+    border: 1px solid #d15e00;
     border-radius: 25px;
     background-color: #000000;
     color: #fff;
@@ -274,7 +273,7 @@ input {
     min-height: 180px;
     margin: 5px;
     padding: 5px;
-    border: 1px solid #ddd;
+    border: 1px solid #d15e00;
     border-radius: 15px;
     background: linear-gradient(145deg, #f36703, #ff8c24);
     color: #fff;
@@ -304,12 +303,13 @@ input {
 #detalhes-evento {
     display: none;
     position: fixed;
-    top: 70%;
-    left: 70%;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
     
-    width: 400px;
-    max-width: 90%;
+    width: 500px;
+    max-width: 100%;
+    height: 400px;
     padding: 25px;
     
     background-color: #fff;
@@ -322,7 +322,7 @@ input {
 
 #detalhes-imagem {
     width: 100%;
-    height: 130px;
+    height: 150px;
     margin-bottom: 15px;
     border-radius: 5px;
     object-fit: cover;
@@ -354,29 +354,53 @@ footer p {
     color: #ddd;
 }
 
-.favoritos {
-    color: #ddd;
-}
-
 .titulo-minhasReservas {
-    padding: 40px 0px 40px 510px;
+    padding: 40px 0px 40px 550px;
 }
 
 .reserva {
     padding: 25px;
-    margin: 20px 450px 70px 450px;
+    margin: 40px 440px 70px 460px;
     border: solid 1px rgb(255, 250, 250);
     border-radius: 12px;
     background-color: #f36703;  
 }
 
-.banners {
+.PNG-reserva {
     padding: 10px 0px 100px 0px;
 }
 
 .btn-cancelar {
     padding: 8px;
     border-radius: 7px;
-    margin: 40px 0px 0px 95px;
+    margin: 20px 0px 0px 95px;
     border: none;
+}
+
+.reserva-favoritos {
+    padding: 25px;
+    margin: 40px 440px 70px 460px;
+    border: solid 1px rgb(255, 250, 250);
+    border-radius: 12px;
+    background-color: #f36703;  
+}
+
+.titulo-favoritos {
+    padding: 40px 0px 40px 550px;
+}
+
+.favoritos {
+    color: #ddd;
+}
+
+.btn-favoritos {
+    padding: 8px;
+    border-radius: 7px;
+    margin: 30px 0px 0px 75px;
+    border: none;
+}
+
+.PNG-favoritos {
+    padding: 0px;
+    margin: 10px 0px 100px 0px;
 }
