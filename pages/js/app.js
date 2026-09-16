@@ -303,6 +303,9 @@ function mostrarDetalhes(evento) {
     document.getElementById("detalhes-titulo").textContent =
         evento["evento-novo"];
 
+    document.getElementById("detalhes-imagem").src =
+        evento.imagem;
+
     document.getElementById("detalhes-descricao").textContent =
         "Confira as informações deste evento.";
 
