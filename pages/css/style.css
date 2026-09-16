@@ -290,6 +290,37 @@ input {
     object-fit: cover;
 }
 
+.btn-saiba-mais {
+    margin-top: 10px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 20px;
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#detalhes-evento {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    width: 400px;
+    max-width: 90%;
+    padding: 25px;
+    
+    background-color: #fff;
+    color: #000;
+    border-radius: 15px;
+    
+    box-shadow: 0 10px 40px #00000066;
+    z-index: 1000;
+}
+
+
 /* FOOTER */
 
 footer {

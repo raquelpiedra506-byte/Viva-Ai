@@ -199,16 +199,17 @@ function displayEventos(lista) {
 
         listaEventos.innerHTML += `
             <div class="banner-novo">
-
                 <img src="${e.imagem}" alt="${e["evento-novo"]}">
-
                 <h5 class="data">${e.data}</h5>
-
                 <h5 class="hora">${e.hora}</h5>
-
                 <h6 class="preco">${e.preco}</h6>
-
                 <h2 class="evento-novo">${e["evento-novo"]}</h2>
+
+                <button 
+                    class="btn-saiba-mais"
+                    data-id="${e.id}">
+                    Saiba mais
+                </button>
 
             </div>
         `;
@@ -233,6 +234,30 @@ function pesquisar() {
     displayEventos(eventosFiltrados);
 }
 
+// CATEGORIAS DE EVENTOS
+
+const select = document.getElementById("categorias");
+const sociais = document.getElementById("sociais").value;
+const culturais = document.getElementById("culturais").value;
+const esportivos = document.getElementById("esportivos").value;
+const educacionais = document.getElementById("educacionais").value;
+const musicais = document.getElementById("musicais").value;
+const tecnológicos = document.getElementById("tecnológicos").value;
+const religiosos = document.getElementById("religiosos").value;
+
+select.addEventListener("change", function () {
+    const categoriaSelecionada = select.value;
+
+    categorias.forEach(function (categoria) {
+        if (categoria === categoriaSelecionada) {
+            const categoriaFiltrada = dados.filter(function (e) {
+                return e.categoria === categoria;
+            });
+            displayCategorias(categoriaFiltrada);
+        }
+    });
+});
+    
 
 // BOTÃO PESQUISAR
 
@@ -247,3 +272,58 @@ pesquisaInput.addEventListener("input", pesquisar);
 // MOSTRAR TODOS AO ABRIR
 
 displayEventos(dados);
+
+
+// CLICAR NO SAIBA MAIS
+
+listaEventos.addEventListener("click", function(event) {
+
+    if (event.target.classList.contains("btn-saiba-mais")) {
+
+        const id = Number(event.target.dataset.id);
+        const evento = dados.find(function(e) {
+            return e.id === id;
+        });
+
+        mostrarDetalhes(evento);
+    }
+
+});
+
+
+// MOSTRAR DETALHES
+
+function mostrarDetalhes(evento) {
+
+    document.getElementById("detalhes-titulo").textContent =
+        evento["evento-novo"];
+
+    document.getElementById("detalhes-descricao").textContent =
+        "Confira as informações deste evento.";
+
+    document.getElementById("detalhes-data").textContent =
+        evento.data;
+
+    document.getElementById("detalhes-hora").textContent =
+        evento.hora;
+
+    document.getElementById("detalhes-preco").textContent =
+        evento.preco;
+
+    document.getElementById("detalhes-vagas").textContent =
+        evento.vaga;
+
+    document.getElementById("detalhes-evento").style.display =
+        "block";
+}
+
+const btnFecharDetalhes =
+    document.getElementById("btn-fechar-detalhes");
+
+btnFecharDetalhes.addEventListener("click", function() {
+
+    document.getElementById("detalhes-evento").style.display =
+        "none";
+
+});
+

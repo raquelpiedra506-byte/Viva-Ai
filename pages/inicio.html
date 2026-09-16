@@ -79,13 +79,13 @@
                 <form>
                     <select id="categorias">
                         <option class="disabled" disabled selected>Categorias</option>
-                        <option>Sociais</option>
-                        <option>Culturais</option>
-                        <option>Esportivos</option>
-                        <option>Educacionais</option>
-                        <option>Musicais</option>
-                        <option>Tecnológicos</option>
-                        <option>Religiosos</option>
+                        <option id="sociais">Sociais</option>
+                        <option id="culturais">Culturais</option>
+                        <option id="esportivos">Esportivos</option>
+                        <option id="educacionais">Educacionais</option>
+                        <option id="musicais">Musicais</option>
+                        <option id="tecnológicos">Tecnológicos</option>
+                        <option id="religiosos">Religiosos</option>
                     </select>
 
                     <select id="data">
@@ -114,6 +114,56 @@
 
             <article>
                 <div id="lista-eventos"></div>
+
+                    <div id="detalhes-evento">
+
+                        <button type="button" id="btn-fechar-detalhes">
+                            X
+                        </button>
+
+                        <div class="detalhes-conteudo">
+
+                            <h2 id="detalhes-titulo"></h2>
+
+                            <p id="detalhes-descricao"></p>
+
+                            <p>
+                                <strong>Data:</strong>
+                                <span id="detalhes-data"></span>
+                            </p>
+
+                            <p>
+                                <strong>Hora:</strong>
+                                <span id="detalhes-hora"></span>
+                            </p>
+
+                            <p>
+                                <strong>Preço:</strong>
+                                <span id="detalhes-preco"></span>
+                            </p>
+
+                            <p>
+                                <strong>Vagas:</strong>
+                                <span id="detalhes-vagas"></span>
+                            </p>
+
+                            <button type="button" id="btn-favorito">
+                                <i class="fa-regular fa-heart"></i>
+                                Favoritar
+                            </button>
+
+                            <button type="button" id="btn-reservar">
+                                <i class="fa-solid fa-ticket"></i>
+                                Reservar
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
             </article>
 
             <footer>
