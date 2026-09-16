@@ -237,27 +237,18 @@ function pesquisar() {
 // CATEGORIAS DE EVENTOS
 
 const select = document.getElementById("categorias");
-const sociais = document.getElementById("sociais").value;
-const culturais = document.getElementById("culturais").value;
-const esportivos = document.getElementById("esportivos").value;
-const educacionais = document.getElementById("educacionais").value;
-const musicais = document.getElementById("musicais").value;
-const tecnológicos = document.getElementById("tecnológicos").value;
-const religiosos = document.getElementById("religiosos").value;
 
 select.addEventListener("change", function () {
-    const categoriaSelecionada = select.value;
+    const categoriaSelecionada = select.value.toLowerCase();
 
-    categorias.forEach(function (categoria) {
-        if (categoria === categoriaSelecionada) {
-            const categoriaFiltrada = dados.filter(function (e) {
-                return e.categoria === categoria;
-            });
-            displayCategorias(categoriaFiltrada);
-        }
+    const eventosFiltrados = dados.filter(function (e) {
+        return e.categoria.toLowerCase() === categoriaSelecionada;
     });
+
+    displayEventos(eventosFiltrados);
+
 });
-    
+
 
 // BOTÃO PESQUISAR
 

@@ -5,7 +5,8 @@ const dados = [
         data: "2026-09-01",
         hora: "10:45",
         preco: "R$ 30,00",
-        "evento-novo": "Musicais",
+        "evento-novo": "Festival Musical de Inverno",
+        categoria: "Musicais",
         imagem: "assents/img/musicais.png",
         vaga: 150
     },
@@ -16,6 +17,7 @@ const dados = [
         hora: "16:00",
         preco: "R$ 45,00",
         "evento-novo": "Festival de Música",
+        categoria: "Musicais",
         imagem: "assents/img/festival.jpg",
         vaga: 220
     },
@@ -26,6 +28,7 @@ const dados = [
         hora: "14:30",
         preco: "R$ 50,00",
         "evento-novo": "Teatro",
+        categoria: "Culturais",
         imagem: "assents/img/teatro.jpg",
         vaga: 135
     },
@@ -36,6 +39,7 @@ const dados = [
         hora: "19:00",
         preco: "R$ 70,00",
         "evento-novo": "Cinema",
+        categoria: "Culturais",
         imagem: "assents/img/cinema.jpg",
         vaga: 120
     },
@@ -46,6 +50,7 @@ const dados = [
         hora: "20:00",
         preco: "R$ 90,00",
         "evento-novo": "Stand-up",
+        categoria: "Culturais",
         imagem: "assents/img/standup.jpg",
         vaga: 140
     },
@@ -56,6 +61,7 @@ const dados = [
         hora: "18:30",
         preco: "R$ 35,00",
         "evento-novo": "Feira Cultural",
+        categoria: "Culturais",
         imagem: "assents/img/feira.jpg",
         vaga: 160
     },
@@ -66,6 +72,7 @@ const dados = [
         hora: "15:00",
         preco: "R$ 25,00",
         "evento-novo": "Exposição de Arte",
+        categoria: "Culturais",
         imagem: "assents/img/exposicao.jpg",
         vaga: 120
     },
@@ -76,6 +83,7 @@ const dados = [
         hora: "19:30",
         preco: "R$ 80,00",
         "evento-novo": "Show ao Vivo",
+        categoria: "Musicais",
         imagem: "assents/img/show.jpg",
         vaga: "Ilimitada"
     },
@@ -86,6 +94,7 @@ const dados = [
         hora: "14:00",
         preco: "R$ 40,00",
         "evento-novo": "Festival Gastronômico",
+        categoria: "Sociais",
         imagem: "assents/img/gastronomia.jpg",
         vaga: 125
     },
@@ -96,6 +105,7 @@ const dados = [
         hora: "20:00",
         preco: "R$ 60,00",
         "evento-novo": "Dança",
+        categoria: "Culturais",
         imagem: "assents/img/danca.jpg",
         vaga: 132
     },
@@ -106,6 +116,7 @@ const dados = [
         hora: "19:00",
         preco: "R$ 55,00",
         "evento-novo": "Palestra",
+        categoria: "Educacionais",
         imagem: "assents/img/palestra.jpg",
         vaga: 170
     },
@@ -116,6 +127,7 @@ const dados = [
         hora: "17:30",
         preco: "R$ 75,00",
         "evento-novo": "Festival de Cinema",
+        categoria: "Culturais",
         imagem: "assents/img/festival-cinema.jpg",
         vaga: 165
     },
@@ -126,6 +138,7 @@ const dados = [
         hora: "10:00",
         preco: "R$ 20,00",
         "evento-novo": "Feira de Artesanato",
+        categoria: "Culturais",
         imagem: "assents/img/artesanato.jpg",
         vaga: 220
     },
@@ -136,6 +149,7 @@ const dados = [
         hora: "19:30",
         preco: "R$ 100,00",
         "evento-novo": "Show Nacional",
+        categoria: "Musicais",
         imagem: "assents/img/show-nacional.jpg",
         vaga: 300
     },
@@ -146,6 +160,7 @@ const dados = [
         hora: "18:00",
         preco: "R$ 65,00",
         "evento-novo": "Teatro Musical",
+        categoria: "Musicais",
         imagem: "assents/img/teatro-musical.jpg",
         vaga: 130
     },
@@ -156,6 +171,7 @@ const dados = [
         hora: "16:30",
         preco: "R$ 35,00",
         "evento-novo": "Evento Geek",
+        categoria: "Tecnológicos",
         imagem: "assents/img/geek.jpg",
         vaga: 175
     },
@@ -166,6 +182,7 @@ const dados = [
         hora: "20:00",
         preco: "R$ 85,00",
         "evento-novo": "Comédia",
+        categoria: "Culturais",
         imagem: "assents/img/comedia.jpg",
         vaga: 150
     },
@@ -176,6 +193,7 @@ const dados = [
         hora: "15:00",
         preco: "R$ 30,00",
         "evento-novo": "Feira Cultural",
+        categoria: "Culturais",
         imagem: "assents/img/feira-cultural.jpg",
         vaga: "Livre ao público."
     }
