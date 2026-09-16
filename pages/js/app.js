@@ -233,6 +233,35 @@ function pesquisar() {
     displayEventos(eventosFiltrados);
 }
 
+// CATEGORIAS DE EVENTOS
+
+const select = document.getElementById("categorias");
+const sociais = document.getElementById("sociais").value;
+const culturais = document.getElementById("culturais").value;
+const esportivos = document.getElementById("esportivos").value;
+const educacionais = document.getElementById("educacionais").value;
+const musicais = document.getElementById("musicais").value;
+const tecnológicos = document.getElementById("tecnológicos").value;
+const religiosos = document.getElementById("religiosos").value;
+
+select.addEventListener("change", function () {
+    const categoriaSelecionada = select.value;
+
+    if (
+        categoriaSelecionada === "sociais" ||
+        categoriaSelecionada === "culturais" ||
+        categoriaSelecionada === "esportivos" ||
+        categoriaSelecionada === "educacionais" ||
+        categoriaSelecionada === "musicais" ||
+        categoriaSelecionada === "tecnológicos" ||
+        categoriaSelecionada === "religiosos"
+    ) {
+        // Filtrar eventos pela categoria selecionada
+        eventosFiltrados = dados.filter(function (e) {
+            return e.categoria === categoriaSelecionada;
+        });
+    }
+});
 
 // BOTÃO PESQUISAR
 
