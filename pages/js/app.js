@@ -248,21 +248,16 @@ const religiosos = document.getElementById("religiosos").value;
 select.addEventListener("change", function () {
     const categoriaSelecionada = select.value;
 
-    if (
-        categoriaSelecionada === "sociais" ||
-        categoriaSelecionada === "culturais" ||
-        categoriaSelecionada === "esportivos" ||
-        categoriaSelecionada === "educacionais" ||
-        categoriaSelecionada === "musicais" ||
-        categoriaSelecionada === "tecnológicos" ||
-        categoriaSelecionada === "religiosos"
-    ) {
-        // Filtrar eventos pela categoria selecionada
-        eventosFiltrados = dados.filter(function (e) {
-            return e.categoria === categoriaSelecionada;
-        });
-    }
+    categorias.forEach(function (categoria) {
+        if (categoria === categoriaSelecionada) {
+            const categoriaFiltrada = dados.filter(function (e) {
+                return e.categoria === categoria;
+            });
+            displayCategorias(categoriaFiltrada);
+        }
+    });
 });
+    
 
 // BOTÃO PESQUISAR
 
