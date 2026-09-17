@@ -5,7 +5,8 @@ const dados = [
         data: "2026-09-01",
         hora: "10:45",
         preco: "R$ 30,00",
-        "evento-novo": "Musicais",
+        "evento-novo": "Festival Musical de Inverno",
+        categoria: "Musicais",
         "detalhes": "Uma experiência especial com apresentações musicais, performances e momentos de entretenimento para todos os públicos.",
         imagem: "assents/img/musicais.jpg",
         vaga: 1500
@@ -17,6 +18,7 @@ const dados = [
         hora: "16:00",
         preco: "R$ 45,00",
         "evento-novo": "Festival de Música",
+        categoria: "Musicais",
         "detalhes": "Festival reunindo diferentes estilos musicais, com apresentações ao vivo, artistas convidados e muita música durante o evento.",
         imagem: "assents/img/festivaldemusica.jpg",
         vaga: 2200
@@ -28,6 +30,7 @@ const dados = [
         hora: "14:30",
         preco: "R$ 50,00",
         "evento-novo": "Teatro",
+        categoria: "Culturais",
         "detalhes": "Uma apresentação teatral com uma história envolvente, interpretação dos atores e uma produção preparada para proporcionar uma experiência cultural marcante.",
         imagem: "assents/img/teatro.jpg",
         vaga: 1350
@@ -39,6 +42,7 @@ const dados = [
         hora: "19:00",
         preco: "R$ 70,00",
         "evento-novo": "Cinema",
+        categoria: "Culturais",
         "detalhes": "Sessão especial de cinema com uma experiência completa para os amantes da sétima arte, incluindo exibição de filme em ambiente preparado para o público.",
         imagem: "assents/img/cinema.jpg",
         vaga: 1200
@@ -50,6 +54,7 @@ const dados = [
         hora: "20:00",
         preco: "R$ 90,00",
         "evento-novo": "Stand-up",
+        categoria: "Culturais",
         "detalhes": "Uma noite de muito humor com apresentações de comediantes, histórias engraçadas e situações do cotidiano transformadas em momentos de diversão.",
         imagem: "assents/img/standup.jpg",
         vaga: 1400
@@ -61,6 +66,7 @@ const dados = [
         hora: "18:30",
         preco: "R$ 35,00",
         "evento-novo": "Feira Cultural",
+        categoria: "Culturais",
         "detalhes": "Feira dedicada à cultura e à diversidade, reunindo artes, música, apresentações e atividades para toda a comunidade.",
         imagem: "assents/img/festivalcultural.jpg",
         vaga: 1600
@@ -72,6 +78,7 @@ const dados = [
         hora: "15:00",
         preco: "R$ 25,00",
         "evento-novo": "Exposição de Arte",
+        categoria: "Culturais",
         "detalhes": "Exposição com obras de arte de diferentes estilos e técnicas, proporcionando ao público um momento de apreciação e contato com a produção artística.",
         imagem: "assents/img/exposiçãodearte.jpg",
         vaga: 1200
@@ -83,6 +90,7 @@ const dados = [
         hora: "19:30",
         preco: "R$ 80,00",
         "evento-novo": "Show ao Vivo",
+        categoria: "Musicais",
         "detalhes": "Show com apresentação musical ao vivo, repertório especial e uma atmosfera preparada para quem gosta de curtir música e entretenimento.",
         imagem: "assents/img/showaovivo.jpg",
         vaga: "Ilimitada"
@@ -94,6 +102,7 @@ const dados = [
         hora: "14:00",
         preco: "R$ 40,00",
         "evento-novo": "Festival Gastronômico",
+        categoria: "Sociais",
         "detalhes": "Uma celebração da gastronomia com diferentes opções de pratos, sabores e experiências culinárias para os visitantes.",
         imagem: "assents/img/festivalgastronomia.gif",
         vaga: 1250
@@ -105,6 +114,7 @@ const dados = [
         hora: "20:00",
         preco: "R$ 60,00",
         "evento-novo": "Dança",
+        categoria: "Culturais",
         "detalhes": "Apresentação de dança com coreografias, música e performances que exploram diferentes movimentos e estilos artísticos.",
         imagem: "assents/img/danca.jpg",
         vaga: 1320
@@ -116,6 +126,7 @@ const dados = [
         hora: "19:00",
         preco: "R$ 55,00",
         "evento-novo": "Palestra",
+        categoria: "Educacionais",
         "detalhes": "Encontro com conteúdo educativo e informativo, proporcionando ao público a oportunidade de aprender, refletir e trocar conhecimentos sobre o tema apresentado.",
         imagem: "assents/img/palestra.jpg",
         vaga: 1700
@@ -127,6 +138,7 @@ const dados = [
         hora: "17:30",
         preco: "R$ 75,00",
         "evento-novo": "Festival de Cinema",
+        categoria: "Culturais",
         "detalhes": "Festival dedicado ao cinema, com uma programação especial de filmes e uma oportunidade para o público conhecer diferentes histórias e produções cinematográficas.",
         imagem: "assents/img/festivaldecinema.jpg",
         vaga: 1650
@@ -138,6 +150,7 @@ const dados = [
         hora: "10:00",
         preco: "R$ 20,00",
         "evento-novo": "Feira de Artesanato",
+        categoria: "Culturais",
         "detalhes": "Feira com produtos artesanais, trabalhos manuais e peças criativas produzidas por artesãos, oferecendo ao público uma experiência de cultura e criatividade.",
         imagem: "assents/img/feiradeartesanato.jpg",
         vaga: 2200
@@ -149,6 +162,7 @@ const dados = [
         hora: "19:30",
         preco: "R$ 100,00",
         "evento-novo": "Show Nacional",
+        categoria: "Musicais",
         "detalhes": "Grande apresentação musical com atrações de destaque nacional, repertório especial e uma noite preparada para os fãs de música ao vivo.",
         imagem: "assents/img/shownacional.jpg",
         vaga: 3000
@@ -160,6 +174,7 @@ const dados = [
         hora: "18:00",
         preco: "R$ 65,00",
         "evento-novo": "Teatro Musical",
+        categoria: "Musicais",
         "detalhes": "Espetáculo que combina teatro, música, dança e interpretação em uma apresentação completa e envolvente para o público.",
         imagem: "assents/img/teatromusical.gif",
         vaga: 1300
@@ -171,6 +186,7 @@ const dados = [
         hora: "16:30",
         preco: "R$ 35,00",
         "evento-novo": "Evento Geek",
+        categoria: "Tecnológicos",
         "detalhes": "Evento voltado para fãs da cultura geek, com atrações relacionadas a filmes, séries, jogos, quadrinhos, tecnologia e entretenimento.",
         imagem: "assents/img/eventogeek.jpg",
         vaga: 1750
@@ -182,6 +198,7 @@ const dados = [
         hora: "20:00",
         preco: "R$ 85,00",
         "evento-novo": "Comédia",
+        categoria: "Culturais",
         "detalhes": "Uma noite dedicada ao humor e à diversão, com apresentações de comédia, histórias divertidas e momentos para aproveitar com os amigos.",
         imagem: "assents/img/comedia.jpg",
         vaga: 1500
@@ -193,6 +210,7 @@ const dados = [
         hora: "15:00",
         preco: "R$ 30,00",
         "evento-novo": "Feira Cultural",
+        categoria: "Culturais",
         "detalhes": "Evento aberto ao público com atrações culturais, apresentações, atividades e espaços dedicados à arte, cultura e convivência.",
         imagem: "assents/img/feiracultural.jpg",
         vaga: "Livre ao público."
