@@ -190,7 +190,7 @@ function displayEventos(lista) {
     if (lista.length === 0) {
 
         listaEventos.innerHTML =
-            "<p>Nenhum evento encontrado.</p>";
+            "<p style='color: #fff;'>Nenhum evento encontrado.</p>";
 
         return;
     }
