@@ -1,0 +1,3 @@
+Ajuda na estruturação da reserva e para gerenciar ela em "minhas-reservas".
+
+precisamos de ajuda para que o botao de reserva seja salvo no historico, com que o numero de vagas do evento tambem diminua de valor correspondentemente com a reserva ou o cancelamento da reserva do evento e que respeitasse o limite de ingreços e que aparecesse um codigo ou qr code para representar o ingreço, pode ser de forma ilustrativa. Se der tambem queria fazer com que o sistema mostrasse caso o evento estivesse lotado.
