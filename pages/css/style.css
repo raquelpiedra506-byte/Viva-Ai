@@ -264,7 +264,32 @@ input {
     width: 100%;
 }
 
+.minhas-reservas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
 .banner-novo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    min-height: 180px;
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #d15e00;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #f36703, #ff8c24);
+    color: #fff;
+    box-shadow: 0 6px 15px #0000002e;
+    transition: 0.3s;
+}
+
+.reserva{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -357,14 +382,6 @@ footer p {
 
 .titulo-minhasReservas {
     padding: 40px 0px 40px 550px;
-}
-
-.reserva {
-    padding: 25px;
-    margin: 40px 440px 70px 460px;
-    border: solid 1px rgb(255, 250, 250);
-    border-radius: 12px;
-    background-color: #f36703;  
 }
 
 .PNG-reserva {
