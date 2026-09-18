@@ -242,6 +242,9 @@ select.addEventListener("change", function () {
     const categoriaSelecionada = select.value.toLowerCase();
 
     const eventosFiltrados = dados.filter(function (e) {
+        if (categoriaSelecionada === "todas") {
+            return true;
+        }
         return e.categoria.toLowerCase() === categoriaSelecionada;
     });
 
@@ -249,6 +252,20 @@ select.addEventListener("change", function () {
 
 });
 
+
+// DATA DE EVENTOS
+
+const dataFiltro = document.getElementById("data");
+
+dataFiltro.addEventListener("change", function () {
+    const diaEscolhido = dataFiltro.value;
+
+    const eventosFiltrados = dados.filter(function (e) {
+        return e.data === diaEscolhido;
+    });
+
+    displayEventos(eventosFiltrados);
+});
 
 // BOTÃO PESQUISAR
 
