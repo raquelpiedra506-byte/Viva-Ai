@@ -40,7 +40,11 @@ const nomesMeses = [
     "Novembro",
     "Dezembro"
 ];
-
+// 00/00/0000
+    function formatarData(data) {
+        const partes = data.split("-");
+        return `${partes[2]}/${partes[1]}/${partes[0]}`;
+    }
 
 // EVENTOS DO CALENDÁRIO
 
@@ -96,6 +100,7 @@ function carregarCalendario() {
 }
 
 
+
 // CLICAR EM UM DIA
 
 function cliqueDia(data) {
@@ -108,7 +113,7 @@ function cliqueDia(data) {
     } else {
 
         const novoEvento = prompt(
-            `Adicionar evento para ${data}:`
+            `Adicionar evento para ${formatarData(data)}:`
         );
 
         if (novoEvento) {
@@ -117,8 +122,8 @@ function cliqueDia(data) {
 
             carregarCalendario();
 
-            eventosElm.textContent =
-                `Evento adicionado: ${novoEvento}`;
+            eventosElm.innerHTML =
+                `Evento em ${formatarData(data)}: ${eventosCalendario[data]}`;
         }
     }
 }
@@ -161,7 +166,6 @@ btnProximo.addEventListener("click", function () {
 // FECHAR CALENDÁRIO
 
 const fechar = document.getElementById("fechar");
-
 fechar.addEventListener("click", function () {
 
     calendario.style.display = "none";
@@ -200,7 +204,7 @@ function displayEventos(lista) {
         listaEventos.innerHTML += `
             <div class="banner-novo">
                 <img src="${e.imagem}" alt="${e["evento-novo"]}">
-                <h5 class="data">${e.data}</h5>
+                <h5 class="data">${formatarData(e.data)}</h5>
                 <h5 class="hora">${e.hora}</h5>
                 <h6 class="preco">${e.preco}</h6>
                 <h2 class="evento-novo">${e["evento-novo"]}</h2>
@@ -222,9 +226,7 @@ function displayEventos(lista) {
 function pesquisar() {
 
     const pesquisa = pesquisaInput.value.toLowerCase().trim();
-
     const eventosFiltrados = dados.filter(function (e) {
-
         return e["evento-novo"]
             .toLowerCase()
             .includes(pesquisa);
@@ -233,6 +235,19 @@ function pesquisar() {
 
     displayEventos(eventosFiltrados);
 }
+
+// CATEGORIAS DE EVENTOS
+
+const select = document.getElementById("categorias");
+select.addEventListener("change", function () {
+    const categoriaSelecionada = select.value.toLowerCase();
+    const eventosFiltrados = dados.filter(function (e) {
+        return e.categoria.toLowerCase() === categoriaSelecionada;
+    });
+
+    displayEventos(eventosFiltrados);
+});
+
 
 // BOTÃO PESQUISAR
 
@@ -280,7 +295,7 @@ function mostrarDetalhes(evento) {
         evento["detalhes"];
 
     document.getElementById("detalhes-data").textContent =
-        evento.data;
+        formatarData(evento.data);
 
     document.getElementById("detalhes-hora").textContent =
         evento.hora;
