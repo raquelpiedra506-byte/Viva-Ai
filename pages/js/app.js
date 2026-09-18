@@ -234,22 +234,6 @@ function pesquisar() {
     displayEventos(eventosFiltrados);
 }
 
-// CATEGORIAS DE EVENTOS
-
-const select = document.getElementById("categorias");
-
-select.addEventListener("change", function () {
-    const categoriaSelecionada = select.value.toLowerCase();
-
-    const eventosFiltrados = dados.filter(function (e) {
-        return e.categoria.toLowerCase() === categoriaSelecionada;
-    });
-
-    displayEventos(eventosFiltrados);
-
-});
-
-
 // BOTÃO PESQUISAR
 
 btnPesquisa.addEventListener("click", pesquisar);

@@ -79,7 +79,6 @@
                 <form>
                     <select id="categorias">
                         <option class="disabled" disabled selected>Categorias</option>
-                        <option value="Todas">Todos os eventos</option>
                         <option value="Sociais">Sociais</option>
                         <option value="Culturais">Culturais</option>
                         <option value="Esportivos">Esportivos</option>
@@ -89,9 +88,15 @@
                         <option value="Religiosos">Religiosos</option>
                     </select>
 
-                    <input type="date" id="data">
+                    <select id="data">
+                        <option class="disabled" disabled selected>Data</option>
+                        <option>Todas as datas</option>
+                        <option>Hoje</option>
+                        <option>Esta semana</option>
+                        <option>Este fim de semana</option>
+                        <option>Este mês</option>
                         <!--<option>Escolher data</option>-->
-                    </input>
+                    </select>
 
                     <div class="pesquisa-container">
                         <label for="pesquisa">
