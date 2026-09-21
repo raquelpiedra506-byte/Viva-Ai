@@ -294,10 +294,8 @@ input {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 220px;
-    min-height: 180px;
-    margin: 5px;
-    padding: 5px;
+    padding: 0px 10px 30px 10px;
+    margin: 40px;
     border: 1px solid #d15e00;
     border-radius: 15px;
     background: linear-gradient(145deg, #f36703, #ff8c24);
@@ -334,7 +332,7 @@ input {
     
     width: 500px;
     max-width: 100%;
-    height: 450px;
+    height: 460px;
     padding: 25px;
     
     background-image: linear-gradient(90deg, rgb(130, 62, 19), rgb(252, 119, 18), rgb(215, 95, 20));
@@ -381,30 +379,39 @@ footer p {
 }
 
 .titulo-minhasReservas {
-    padding: 40px 0px 40px 550px;
+    padding: 140px 0px 0px 0px;
 }
 
 .PNG-reserva {
-    padding: 10px 0px 100px 0px;
+    padding: 10px 0px 10px 0px;
 }
 
 .btn-cancelar {
-    padding: 8px;
-    border-radius: 7px;
-    margin: 20px 0px 0px 95px;
+    padding: 12px;
+    border-radius: 17px;
+    margin: 30px 0px 0px 50px;
     border: none;
+    background-color: #000;
+    color: white;
 }
 
 .reserva-favoritos {
-    padding: 25px;
-    margin: 40px 440px 70px 460px;
-    border: solid 1px rgb(255, 250, 250);
-    border-radius: 12px;
-    background-color: #f36703;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 10px 30px 10px;
+    margin: 0px 770px 40px 770px;
+    border: 1px solid #d15e00;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #f36703, #ff8c24);
+    color: #fff;
+    box-shadow: 0 6px 15px #0000002e;
+    transition: 0.3s;
 }
 
 .titulo-favoritos {
-    padding: 40px 0px 40px 550px;
+    padding: 70px 0px 80px 870px;
 }
 
 .favoritos {
@@ -414,8 +421,10 @@ footer p {
 .btn-favoritos {
     padding: 8px;
     border-radius: 7px;
-    margin: 30px 0px 0px 75px;
+    margin: 30px 0px 0px 0px;
     border: none;
+    color: white;
+    background-color: #000;
 }
 
 .PNG-favoritos {
@@ -424,14 +433,60 @@ footer p {
 }
 
 .btn-fr {
-    padding: 2px;
-    margin: 20px 2px 0px 0px;
+    padding: 10px;
+    margin: 20px 8px 0px 0px;
+    color: white;
+    background-color: #000;
+    border: none;
+    border-radius: 20px;
 }
 
 .btn-fechar-dtl {
     padding: 7px 10px 7px 10px;
-    margin: 0px 0px 0px 430px;
+    margin: -10px 0px 0px 420px;
     border-radius: 100%;
     border: none;
-
+    color: white;
+    background-color: #000;
 }
+
+.btn-cancelar:hover {
+    cursor: pointer;
+    background-color: #291f18;
+}
+
+.btn-favoritos:hover {
+    cursor: pointer;
+    background-color: #291f18;
+}
+
+.btn-fechar-dtl:hover {
+    cursor: pointer;
+    background-color: #291f18;
+}
+
+.btn-fr:hover {
+    cursor: pointer;
+    background-color: #291f18;
+}
+
+.btn-saiba-mais:hover {
+    background-color: #291f18;
+}
+
+.titulo-evento {
+    padding: 10px 0px 40px 0px;
+}
+
+.titulocomedy {
+    padding: 0px 0px 20px 60px;
+}
+
+.central-reserva {
+    padding: 0px 0px 10px 0px;
+}
+
+.card-cmdvivaai {
+    font-size: 22px;
+}
+
