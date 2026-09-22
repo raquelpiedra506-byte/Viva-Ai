@@ -320,3 +320,44 @@ btnFecharDetalhes.addEventListener("click", function() {
 
 });
 
+// ICONE RESERVAR
+
+lista.forEach(function (e) {
+    listaEventos.innerHTML += `
+        <div class="banner-novo">
+            <i class="fa-solid fa-ticket btn-reservar" data-id="${e.id}"></i>
+        </div>
+    `;
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const iconesFavoritar = document.querySelectorAll(".btn-favoritar");
+
+    iconesFavoritar.forEach(function (icone) {
+
+        const id = icone.dataset.id;
+
+        if (favoritos.includes(id)) {
+            icone.classList.add("favoritado");
+        }
+
+        icone.addEventListener("click", function () {
+            icone.classList.toggle("favoritado");
+
+            if (icone.classList.contains("favoritado")) {
+                if (!favoritos.includes(id)) {
+                    favoritos.push(id);
+                }
+            } else {
+                const index = favoritos.indexOf(id);
+                if (index !== -1) {
+                    favoritos.splice(index, 1);
+                }
+            }
+        });
+
+    });
+
+});
+
