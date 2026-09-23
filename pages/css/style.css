@@ -332,10 +332,10 @@ input {
     
     width: 500px;
     max-width: 100%;
-    height: 460px;
+    height: 470px;
     padding: 25px;
     
-    background-image: linear-gradient(90deg, rgb(130, 62, 19), rgb(252, 119, 18), rgb(215, 95, 20));
+    background-image: linear-gradient(90deg, rgb(155, 76, 27), rgb(252, 119, 18), rgb(215, 95, 20));
     color: #fefbfb;
     border-radius: 15px;
     
@@ -379,11 +379,32 @@ footer p {
 }
 
 .titulo-minhasReservas {
-    padding: 140px 0px 0px 0px;
+    padding: 40px 0px 40px 550px;
 }
 
-.PNG-reserva {
-    padding: 10px 0px 10px 0px;
+.reserva {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.informacoes-reserva {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    min-height: 180px;
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #d15e00;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #f36703, #ff8c24);
+    color: #fff;
+    box-shadow: 0 6px 15px #0000002e;
+    transition: 0.3s;
 }
 
 .btn-cancelar {
@@ -392,7 +413,7 @@ footer p {
     margin: 30px 0px 0px 50px;
     border: none;
     background-color: #000;
-    color: white;
+    color: #fefbfb;
 }
 
 .reserva-favoritos {
@@ -423,8 +444,8 @@ footer p {
     border-radius: 7px;
     margin: 30px 0px 0px 0px;
     border: none;
-    color: white;
     background-color: #000;
+    color: #fefbfb;
 }
 
 .PNG-favoritos {
@@ -433,60 +454,43 @@ footer p {
 }
 
 .btn-fr {
-    padding: 10px;
-    margin: 20px 8px 0px 0px;
-    color: white;
-    background-color: #000;
+    padding: 11px;
+    margin: 21px 6px 0px 3px;
+    border-radius: 12px;
     border: none;
-    border-radius: 20px;
+    background-color: #000;
+    color: #fefbfb;
 }
 
 .btn-fechar-dtl {
     padding: 7px 10px 7px 10px;
-    margin: -10px 0px 0px 420px;
+    margin: 0px 0px 0px 420px;
     border-radius: 100%;
     border: none;
-    color: white;
     background-color: #000;
+    color: #fefbfb;
 }
 
 .btn-cancelar:hover {
     cursor: pointer;
-    background-color: #291f18;
+    background-color: #363333;
+    color:#fffafa;
 }
 
 .btn-favoritos:hover {
     cursor: pointer;
-    background-color: #291f18;
+    background-color: #363333;
+    color:#fffafa;
 }
 
 .btn-fechar-dtl:hover {
     cursor: pointer;
-    background-color: #291f18;
+    background-color: #2f2d2d;
+    color:#fffbfb;
 }
 
 .btn-fr:hover {
     cursor: pointer;
-    background-color: #291f18;
+    background-color: #363333;
+    color:#fffafa;
 }
-
-.btn-saiba-mais:hover {
-    background-color: #291f18;
-}
-
-.titulo-evento {
-    padding: 10px 0px 40px 0px;
-}
-
-.titulocomedy {
-    padding: 0px 0px 20px 60px;
-}
-
-.central-reserva {
-    padding: 0px 0px 10px 0px;
-}
-
-.card-cmdvivaai {
-    font-size: 22px;
-}
-
