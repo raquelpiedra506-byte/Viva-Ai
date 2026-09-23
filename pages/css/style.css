@@ -270,6 +270,7 @@ input {
     justify-content: center;
     gap: 20px;
     width: 100%;
+    color: #ddd;
 }
 
 .banner-novo {
@@ -302,6 +303,9 @@ input {
     color: #fff;
     box-shadow: 0 6px 15px #0000002e;
     transition: 0.3s;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
 }
 
 .banner-novo img {
@@ -373,20 +377,8 @@ footer p {
     font-size: 13px;
 }
 
-.minhas-reservas {
-    color: #ddd;
-}
-
 .titulo-minhasReservas {
     padding: 40px 0px 40px 550px;
-}
-
-.reserva {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    width: 100%;
 }
 
 .informacoes-reserva {
@@ -432,6 +424,13 @@ footer p {
 
 .titulo-favoritos {
     padding: 70px 0px 80px 870px;
+}
+
+.PNG-reserva img {
+    width: 100%;
+    height: 150px;
+    border-radius: 7px;
+    object-fit: cover;
 }
 
 .favoritos {
