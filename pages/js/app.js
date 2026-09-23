@@ -1,139 +1,133 @@
-// ABRIR AGENDA
+// ABRIR E FECHAR CALENDÁRIO
 
-const agendaLink = document.getElementById("agenda");
+const agenda = document.getElementById("agenda");
 const calendario = document.querySelector(".calendar");
+const fechar = document.getElementById("fechar");
 
-agendaLink.addEventListener("click", function (event) {
+agenda.onclick = function(event) {
     event.preventDefault();
     calendario.style.display = "block";
-});
+};
+
+fechar.onclick = function() {
+    calendario.style.display = "none";
+};
 
 
-// ELEMENTOS DO CALENDÁRIO
+// ELEMENTOS
 
-const mesAnoElm = document.getElementById("mes-ano");
-const diasElm = document.getElementById("dias-calendario");
-const eventosElm = document.getElementById("eventos");
-
-
-// DATA ATUAL
-
-const dataAtual = new Date();
-
-let ano = dataAtual.getFullYear();
-let mes = dataAtual.getMonth();
+const mesAno = document.getElementById("mes-ano");
+const dias = document.getElementById("dias-calendario");
+const eventos = document.getElementById("eventos");
 
 
-// NOMES DOS MESES
+// DATA
 
-const nomesMeses = [
-    "Janeiro",
-    "Fevereiro",
-    "Março",
-    "Abril",
-    "Maio",
-    "Junho",
-    "Julho",
-    "Agosto",
-    "Setembro",
-    "Outubro",
-    "Novembro",
-    "Dezembro"
+let data = new Date();
+let ano = data.getFullYear();
+let mes = data.getMonth();
+
+const meses = [
+    "Janeiro", "Fevereiro", "Março", "Abril",
+    "Maio", "Junho", "Julho", "Agosto",
+    "Setembro", "Outubro", "Novembro", "Dezembro"
 ];
-// 00/00/0000
-    function formatarData(data) {
-        const partes = data.split("-");
-        return `${partes[2]}/${partes[1]}/${partes[0]}`;
-    }
 
-// EVENTOS DO CALENDÁRIO
 
-const eventosCalendario = dados.reduce(function (acc, evento) {
-    acc[evento.data] = evento["evento-novo"];
-    return acc;
-}, {});
+// FORMATAR DATA
+
+function formatarData(data) {
+    let partes = data.split("-");
+    return partes[2] + "/" + partes[1] + "/" + partes[0];
+}
+
+
+// EVENTOS
+
+const eventosCalendario = {};
+
+dados.forEach(function(evento) {
+    eventosCalendario[evento.data] = evento["evento-novo"];
+});
 
 
 // CARREGAR CALENDÁRIO
 
 function carregarCalendario() {
 
-    mesAnoElm.textContent = `${nomesMeses[mes]} de ${ano}`;
+    mesAno.textContent = meses[mes] + " de " + ano;
 
-    const primeiroDiaIndex = new Date(ano, mes, 1).getDay();
-    const ultimoDia = new Date(ano, mes + 1, 0).getDate();
+    let primeiroDia = new Date(ano, mes, 1).getDay();
+    let ultimoDia = new Date(ano, mes + 1, 0).getDate();
 
-    diasElm.innerHTML = "";
+    dias.innerHTML = "";
 
-    // espaços antes do primeiro dia
+    // Espaços antes do primeiro dia
 
-    for (let i = 0; i < primeiroDiaIndex; i++) {
-        const espaco = document.createElement("div");
-        diasElm.appendChild(espaco);
+    for (let i = 0; i < primeiroDia; i++) {
+        dias.innerHTML += "<div></div>";
     }
 
-    // dias do mês
+    // Dias do mês
 
     for (let dia = 1; dia <= ultimoDia; dia++) {
 
-        const diaStr = String(dia).padStart(2, "0");
-        const mesStr = String(mes + 1).padStart(2, "0");
+        let diaFormatado = String(dia).padStart(2, "0");
+        let mesFormatado = String(mes + 1).padStart(2, "0");
 
-        const dataCompleta = `${ano}-${mesStr}-${diaStr}`;
+        let dataCompleta =
+            ano + "-" + mesFormatado + "-" + diaFormatado;
 
-        const diaElemento = document.createElement("div");
+        let elemento = document.createElement("div");
 
-        diaElemento.textContent = dia;
+        elemento.textContent = dia;
 
         if (eventosCalendario[dataCompleta]) {
-            diaElemento.classList.add("evento");
+            elemento.classList.add("evento");
         }
 
-        // clique no dia
+        elemento.onclick = function() {
+            clicarDia(dataCompleta);
+        };
 
-        diaElemento.addEventListener("click", function () {
-            cliqueDia(dataCompleta);
-        });
-
-        diasElm.appendChild(diaElemento);
+        dias.appendChild(elemento);
     }
 }
 
 
+// CLICAR NO DIA
 
-// CLICAR EM UM DIA
-
-function cliqueDia(data) {
+function clicarDia(data) {
 
     if (eventosCalendario[data]) {
 
-        eventosElm.innerHTML =
-            `Evento em ${data}: ${eventosCalendario[data]}`;
+        eventos.textContent =
+            "Evento em " + formatarData(data) +
+            ": " + eventosCalendario[data];
 
-    } else {
+        return;
+    }
 
-        const novoEvento = prompt(
-            `Adicionar evento para ${formatarData(data)}:`
-        );
+    let novoEvento = prompt(
+        "Adicionar evento para " + formatarData(data) + ":"
+    );
 
-        if (novoEvento) {
+    if (novoEvento) {
 
-            eventosCalendario[data] = novoEvento;
+        eventosCalendario[data] = novoEvento;
 
-            carregarCalendario();
+        carregarCalendario();
 
-            eventosElm.innerHTML =
-                `Evento em ${formatarData(data)}: ${eventosCalendario[data]}`;
-        }
+        eventos.textContent =
+            "Evento em " + formatarData(data) +
+            ": " + novoEvento;
     }
 }
 
 
 // MÊS ANTERIOR
 
-const btnAnterior = document.getElementById("btn-anterior");
-
-btnAnterior.addEventListener("click", function () {
+document.getElementById("btn-anterior").onclick = function() {
 
     mes--;
 
@@ -143,14 +137,12 @@ btnAnterior.addEventListener("click", function () {
     }
 
     carregarCalendario();
-});
+};
 
 
 // PRÓXIMO MÊS
 
-const btnProximo = document.getElementById("btn-proximo");
-
-btnProximo.addEventListener("click", function () {
+document.getElementById("btn-proximo").onclick = function() {
 
     mes++;
 
@@ -160,58 +152,57 @@ btnProximo.addEventListener("click", function () {
     }
 
     carregarCalendario();
-});
+};
 
 
-// FECHAR CALENDÁRIO
-
-const fechar = document.getElementById("fechar");
-fechar.addEventListener("click", function () {
-
-    calendario.style.display = "none";
-
-});
-
-
-// INICIAR CALENDÁRIO
+// INICIAR
 
 carregarCalendario();
 
 
-// PESQUISA DE EVENTOS
+// LISTA DE EVENTOS
 
 const listaEventos = document.getElementById("lista-eventos");
-const pesquisaInput = document.getElementById("pesquisa");
+const pesquisa = document.getElementById("pesquisa");
 const btnPesquisa = document.getElementById("btn-pesquisa");
 
 
 // MOSTRAR EVENTOS
 
-function displayEventos(lista) {
+function mostrarEventos(lista) {
 
     listaEventos.innerHTML = "";
 
-    if (lista.length === 0) {
-
+    if (lista.length == 0) {
         listaEventos.innerHTML =
-            "<p style='color: #fff;'>Nenhum evento encontrado.</p>";
-
+            "<p>Nenhum evento encontrado.</p>";
         return;
     }
 
-    lista.forEach(function (e) {
+    lista.forEach(function(evento) {
 
         listaEventos.innerHTML += `
             <div class="banner-novo">
-                <img src="${e.imagem}" alt="${e["evento-novo"]}">
-                <h5 class="data">${formatarData(e.data)}</h5>
-                <h5 class="hora">${e.hora}</h5>
-                <h6 class="preco">${e.preco}</h6>
-                <h2 class="evento-novo">${e["evento-novo"]}</h2>
 
-                <button 
-                    class="btn-saiba-mais"
-                    data-id="${e.id}">
+                <img src="${evento.imagem}" alt="${evento["evento-novo"]}">
+
+                <h5 class="data">
+                    ${formatarData(evento.data)}
+                </h5>
+
+                <h5 class="hora">
+                    ${evento.hora}
+                </h5>
+
+                <h6 class="preco">
+                    ${evento.preco}
+                </h6>
+
+                <h2 class="evento-novo">
+                    ${evento["evento-novo"]}
+                </h2>
+
+                <button class="btn-saiba-mais" data-id="${evento.id}">
                     Saiba mais
                 </button>
 
@@ -225,63 +216,68 @@ function displayEventos(lista) {
 
 function pesquisar() {
 
-    const pesquisa = pesquisaInput.value.toLowerCase().trim();
-    const eventosFiltrados = dados.filter(function (e) {
-        return e["evento-novo"]
+    let texto = pesquisa.value.toLowerCase();
+
+    let resultado = dados.filter(function(evento) {
+
+        return evento["evento-novo"]
             .toLowerCase()
-            .includes(pesquisa);
-
+            .includes(texto);
     });
 
-    displayEventos(eventosFiltrados);
+    mostrarEventos(resultado);
 }
-
-// CATEGORIAS DE EVENTOS
-
-const select = document.getElementById("categorias");
-select.addEventListener("change", function () {
-    const categoriaSelecionada = select.value.toLowerCase();
-    const eventosFiltrados = dados.filter(function (e) {
-        return e.categoria.toLowerCase() === categoriaSelecionada;
-    });
-
-    displayEventos(eventosFiltrados);
-});
 
 
 // BOTÃO PESQUISAR
 
-btnPesquisa.addEventListener("click", pesquisar);
+btnPesquisa.onclick = pesquisar;
 
 
-// PESQUISA ENQUANTO DIGITA
+// PESQUISAR ENQUANTO DIGITA
 
-pesquisaInput.addEventListener("input", pesquisar);
-
-
-// MOSTRAR TODOS AO ABRIR
-
-displayEventos(dados);
+pesquisa.oninput = pesquisar;
 
 
-// CLICAR NO SAIBA MAIS
+// MOSTRAR TODOS
 
-listaEventos.addEventListener("click", function(event) {
+mostrarEventos(dados);
 
-    if (event.target.classList.contains("btn-saiba-mais")) {
 
-        const id = Number(event.target.dataset.id);
-        const evento = dados.find(function(e) {
-            return e.id === id;
-        });
+// FILTRAR POR CATEGORIA
 
-        mostrarDetalhes(evento);
+const categorias = document.getElementById("categorias");
+
+categorias.onchange = function() {
+
+    let categoria = categorias.value.toLowerCase();
+    let resultado = dados.filter(function(evento) {
+        return evento.categoria.toLowerCase() == categoria;
+    });
+
+    mostrarEventos(resultado);
+};
+
+
+// SAIBA MAIS
+
+listaEventos.onclick = function(event) {
+
+    if (!event.target.classList.contains("btn-saiba-mais")) {
+        return;
     }
 
-});
+    let id = Number(event.target.dataset.id);
+
+    let evento = dados.find(function(item) {
+        return item.id == id;
+    });
+
+    mostrarDetalhes(evento);
+};
 
 
-// MOSTRAR DETALHES
+// DETALHES DO EVENTO
 
 function mostrarDetalhes(evento) {
 
@@ -292,7 +288,7 @@ function mostrarDetalhes(evento) {
         evento.imagem;
 
     document.getElementById("detalhes-descricao").textContent =
-        evento["detalhes"];
+        evento.detalhes;
 
     document.getElementById("detalhes-data").textContent =
         formatarData(evento.data);
@@ -310,54 +306,12 @@ function mostrarDetalhes(evento) {
         "block";
 }
 
-const btnFecharDetalhes =
-    document.getElementById("btn-fechar-detalhes");
 
-btnFecharDetalhes.addEventListener("click", function() {
+// FECHAR DETALHES
 
-    document.getElementById("detalhes-evento").style.display =
-        "none";
+document.getElementById("btn-fechar-detalhes").onclick =
+    function() {
 
-});
-
-// ICONE RESERVAR
-
-lista.forEach(function (e) {
-    listaEventos.innerHTML += `
-        <div class="banner-novo">
-            <i class="fa-solid fa-ticket btn-reservar" data-id="${e.id}"></i>
-        </div>
-    `;
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const iconesFavoritar = document.querySelectorAll(".btn-favoritar");
-
-    iconesFavoritar.forEach(function (icone) {
-
-        const id = icone.dataset.id;
-
-        if (favoritos.includes(id)) {
-            icone.classList.add("favoritado");
-        }
-
-        icone.addEventListener("click", function () {
-            icone.classList.toggle("favoritado");
-
-            if (icone.classList.contains("favoritado")) {
-                if (!favoritos.includes(id)) {
-                    favoritos.push(id);
-                }
-            } else {
-                const index = favoritos.indexOf(id);
-                if (index !== -1) {
-                    favoritos.splice(index, 1);
-                }
-            }
-        });
-
-    });
-
-});
-
+        document.getElementById("detalhes-evento").style.display =
+            "none";
+    };
