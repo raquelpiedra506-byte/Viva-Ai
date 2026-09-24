@@ -425,6 +425,10 @@ footer {
     text-align: center;
 }
 
+.qr-ingresso{
+    display: none;
+}
+
 footer img {
     width: 70px;
     height: 70px;
