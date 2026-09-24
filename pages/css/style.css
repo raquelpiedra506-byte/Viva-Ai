@@ -237,6 +237,7 @@ select,
     justify-content: center;
     gap: 20px;
     width: 100%;
+    color: #ddd;
 }
 
 .banner-novo,
@@ -256,6 +257,21 @@ select,
 .banner-novo {
     width: 220px;
     min-height: 180px;
+.reserva{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 10px 30px 10px;
+    margin: 40px;
+    border: 1px solid #d15e00;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #f36703, #ff8c24);
+    color: #fff;
+    box-shadow: 0 6px 15px #0000002e;
+    transition: 0.3s;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .banner-novo img {
@@ -415,4 +431,132 @@ footer img {
 
 footer p {
     font-size: 13px;
+}
+
+.titulo-minhasReservas {
+    padding: 130px 0px 0px 0px;
+}
+
+.informacoes-reserva {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    min-height: 180px;
+    border: none;
+    border-radius: 15px;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.btn-cancelar {
+    padding: 12px;
+    border-radius: 17px;
+    margin: 30px 10px 10px 10px;
+    border: none;
+    background-color: #000;
+    color: #fefbfb;
+}
+
+.reserva-favoritos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 10px 30px 10px;
+    margin: 0px 770px 40px 770px;
+    border: 1px solid #d15e00;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #f36703, #ff8c24);
+    color: #fff;
+    box-shadow: 0 6px 15px #0000002e;
+    transition: 0.3s;
+}
+
+.titulo-favoritos {
+    padding: 70px 0px 80px 870px;
+}
+
+.PNG-reserva img {
+    width: 230px;
+    height: 140px;
+    border-radius: 7px;
+    object-fit: cover;
+}
+
+.favoritos {
+    color: #ddd;
+}
+
+.btn-favoritos {
+    padding: 8px;
+    border-radius: 7px;
+    margin: 30px 0px 0px 0px;
+    border: none;
+    background-color: #000;
+    color: #fefbfb;
+}
+
+.PNG-favoritos {
+    padding: 0px;
+    margin: 10px 0px 100px 0px;
+}
+
+.btn-fr {
+    padding: 10px;
+    margin: 21px 6px 0px 3px;
+    border-radius: 20px;
+    border: none;
+    background-color: #000;
+    color: #fefbfb;
+}
+
+.btn-fr2 {
+    padding: 10px 5px 10px 8px;
+    margin: 0px 10px 0px 0px;
+    border-radius: 20px;
+    border: none;
+    background-color: #000;
+    color: #fefbfb;
+    font-size: 13px;
+}
+
+.btn-fechar-dtl {
+    padding: 7px 10px 7px 10px;
+    margin: 0px 0px 0px 420px;
+    border-radius: 100%;
+    border: none;
+    background-color: #000;
+    color: #fefbfb;
+}
+
+.btn-cancelar:hover {
+    cursor: pointer;
+    background-color: #363333;
+    color:#fffafa;
+}
+
+.btn-favoritos:hover {
+    cursor: pointer;
+    background-color: #363333;
+    color:#fffafa;
+}
+
+.btn-fechar-dtl:hover {
+    cursor: pointer;
+    background-color: #2f2d2d;
+    color:#fffbfb;
+}
+
+.btn-fr:hover {
+    cursor: pointer;
+    background-color: #363333;
+    color:#fffafa;
+}
+
+.btn-fr2:hover {
+    cursor: pointer;
+    background-color: #363333;
+    color:#fffafa;
 }

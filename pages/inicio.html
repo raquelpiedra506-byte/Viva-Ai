@@ -139,27 +139,25 @@
                                 <span id="detalhes-vagas"></span>
                             </p>
 
-                            <label class="btn-fr">
-                                <input 
-                                    type="checkbox" 
-                                    class="btn-favoritar"
-                                    id="btn-favorito"
-                                    data-id=""
-                                >
+                            <p id="detalhes-lotado" class="aviso-lotado" hidden>Evento lotado — sem vagas disponíveis.</p>
 
+                            <div class="campo-ingressos">
+                                <label for="quantidade-ingressos">Quantidade de ingressos:</label>
+                                <input type="number" style="color: rgb(0, 0, 0);" id="quantidade-ingressos" min="1" value="1">
+                            </div>
+
+                            <label class="btn-fr2">
+                                <input type="checkbox" class="btn-favoritar" id="btn-favorito">
                                 <i class="fa-regular fa-heart"></i>
                                 Favoritar
                             </label>
 
-
-                            <button class="btn-fr" id="btn-reservar" data-id="">
+                            <button class="btn-fr" id="btn-reservar">
                                 <i class="fa-solid fa-ticket"></i>
                                 Reservar
                             </button>
 
                         </div>
-
-                    </div>
 
 
                 </div>
