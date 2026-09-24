@@ -6,14 +6,15 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #291206;
+    background: #291206;
     color: #040404;
 }
 
-/* HEADER */
+/* Header */
 
 header {
     position: fixed;
+    top: 0;
     width: 100%;
     height: 70px;
     padding: 15px 50px;
@@ -22,27 +23,17 @@ header {
     background: linear-gradient(90deg, #000, #f36703);
     color: #fff;
     box-shadow: 0 4px 12px #00000040;
+    z-index: 100;
 }
 
-#logo {
-    display: flex;
-    align-items: center;
-}
 #logo h1 {
     font-size: 24px;
-    font-weight: bold;
     color: #fff;
 }
-#logo h1 strong {
+
+#logo strong {
     color: #ff8800;
 }
-
-#logo img {
-    width: 85px;
-    height: 85px;
-}
-
-/* MENU */
 
 #menu {
     flex: 1;
@@ -57,7 +48,6 @@ header {
 }
 
 .menu-navegacao a {
-    position: relative;
     padding: 10px 5px;
     color: #fff;
     text-decoration: none;
@@ -65,29 +55,27 @@ header {
     font-weight: bold;
 }
 
-/* BOTÃO USUÁRIO */
-
 header > button {
     width: 45px;
     height: 45px;
     border: none;
     border-radius: 50%;
-    background-color: #fff;
+    background: #fff;
     cursor: pointer;
-    transition: 0.3s;
 }
-/* CALENDÁRIO */
+
+/* Calendário */
 
 .calendar {
     display: none;
     position: absolute;
-    top: 90px;
+    top: 70px;
     width: 350px;
     padding: 20px;
-    background-color: #fff;
+    background: #fff;
+    color: #000;
     border-radius: 12px;
     box-shadow: 0 8px 25px #00000040;
-    color: #000;
 }
 
 .header-agenda {
@@ -115,17 +103,15 @@ header > button {
     padding: 10px 0;
     border-radius: 6px;
     cursor: pointer;
-    transition: 0.2s;
 }
 
 .dias div:hover {
-    background-color: #ffe0c2;
+    background: #ffe0c2;
 }
 
 .dias .evento {
-    background-color: #f36703;
+    background: #f36703;
     color: #fff;
-    font-weight: bold;
 }
 
 #fechar {
@@ -136,7 +122,7 @@ header > button {
     height: 28px;
     border: none;
     border-radius: 50%;
-    background-color: #f36703;
+    background: #f36703;
     color: #fff;
     cursor: pointer;
 }
@@ -156,17 +142,16 @@ header > button {
     padding: 8px 15px;
     border: none;
     border-radius: 20px;
-    background-color: #f36703;
+    background: #f36703;
     color: #fff;
     cursor: pointer;
-    transition: 0.3s;
 }
 
-/* CONTEÚDO */
+/* Conteúdo */
 
 main {
+    min-height: 100vh;
     padding-top: 70px;
-    min-height: 100px;
 }
 
 .conteudo-principal {
@@ -175,9 +160,8 @@ main {
 
 .conteudo-banner img {
     width: 100%;
+    display: block;
 }
-
-/* FILTROS */
 
 form {
     display: flex;
@@ -185,17 +169,17 @@ form {
     align-items: center;
     flex-wrap: wrap;
     gap: 15px;
+    padding: 20px;
 }
 
-select, #data {
+select,
+#data {
     width: 190px;
-    margin: 10px;
     padding: 12px 15px;
-    border-radius: 25px;
     border: 1px solid #d15e00;
-    background-color: #000000;
-    color: #ffffff;
-    font-size: 14px;
+    border-radius: 25px;
+    background: #000;
+    color: #fff;
     cursor: pointer;
     outline: none;
 }
@@ -204,26 +188,21 @@ select, #data {
     display: none;
 }
 
-/* PESQUISA */
+/* Pesquisa */
 
 .pesquisa-container {
     display: flex;
-    align-items: center;
-    
     width: 400px;
     padding: 4px 5px 4px 15px;
     border: 1px solid #d15e00;
     border-radius: 25px;
-    background-color: #000000;
-    color: #fff;
-    font-size: 14px;
-    transition: 0.3s;
+    background: #000;
 }
 
 .pesquisa-container label {
     display: flex;
-    width: 100%;
     align-items: center;
+    width: 100%;
 }
 
 #pesquisa {
@@ -232,7 +211,7 @@ select, #data {
     border: none;
     outline: none;
     background: transparent;
-    font-size: 14px;
+    color: #fff;
 }
 
 #pesquisa::placeholder {
@@ -243,27 +222,15 @@ select, #data {
     padding: 10px 16px;
     border: none;
     border-radius: 20px;
-    background-color: #f36703;
+    background: #f36703;
     color: #fff;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
 }
 
-input {
-    color: #ffffff; 
-}
+/* Eventos */
 
-/* CARDS */
-
-#lista-eventos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    width: 100%;
-}
-
+#lista-eventos,
 .minhas-reservas {
     display: flex;
     flex-wrap: wrap;
@@ -272,36 +239,23 @@ input {
     width: 100%;
 }
 
-.banner-novo {
+.banner-novo,
+.reserva,
+.reserva-favoritos {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    width: 220px;
-    min-height: 180px;
-    margin: 5px;
-    padding: 5px;
+    padding: 10px;
     border: 1px solid #d15e00;
     border-radius: 15px;
     background: linear-gradient(145deg, #f36703, #ff8c24);
     color: #fff;
     box-shadow: 0 6px 15px #0000002e;
-    transition: 0.3s;
 }
 
-.reserva{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 0px 10px 30px 10px;
-    margin: 40px;
-    border: 1px solid #d15e00;
-    border-radius: 15px;
-    background: linear-gradient(145deg, #f36703, #ff8c24);
-    color: #fff;
-    box-shadow: 0 6px 15px #0000002e;
-    transition: 0.3s;
+.banner-novo {
+    width: 220px;
+    min-height: 180px;
 }
 
 .banner-novo img {
@@ -312,35 +266,78 @@ input {
     object-fit: cover;
 }
 
+.reserva {
+    margin: 40px;
+    padding-bottom: 30px;
+}
+
+.reserva-favoritos {
+    max-width: 500px;
+    margin: 40px auto;
+    padding-bottom: 30px;
+}
+
+/* Botões */
+
+.btn-saiba-mais,
+.btn-cancelar,
+.btn-favoritos,
+.btn-fr {
+    border: none;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+}
+
 .btn-saiba-mais {
     margin-top: 10px;
     padding: 10px 18px;
-    border: none;
     border-radius: 20px;
-    background-color: #000;
-    color: #fff;
     font-weight: bold;
-    cursor: pointer;
 }
+
+.btn-cancelar {
+    margin-top: 30px;
+    padding: 12px;
+    border-radius: 17px;
+}
+
+.btn-favoritos {
+    margin-top: 30px;
+    padding: 8px;
+    border-radius: 7px;
+}
+
+.btn-fr {
+    margin: 20px 8px 0 0;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.btn-cancelar:hover,
+.btn-favoritos:hover,
+.btn-fr:hover,
+.btn-saiba-mais:hover {
+    background: #291f18;
+}
+
+/* Detalhes */
 
 #detalhes-evento {
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    
     width: 500px;
-    max-width: 100%;
+    max-width: 90%;
     height: 460px;
     padding: 25px;
-    
-    background-image: linear-gradient(90deg, rgb(130, 62, 19), rgb(252, 119, 18), rgb(215, 95, 20));
-    color: #fefbfb;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(90deg, #823e13, #fc7712, #d75f14);
+    color: #fff;
+    border: 5px solid #201811;
     border-radius: 15px;
-    
-    box-shadow: 0 40px 70px #000000;
-    border: solid 5px #201811;
+    box-shadow: 0 40px 70px #000;
     z-index: 1000;
 }
 
@@ -352,8 +349,54 @@ input {
     object-fit: cover;
 }
 
+.btn-fechar-dtl {
+    float: right;
+    padding: 7px 10px;
+    border: none;
+    border-radius: 50%;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+}
 
-/* FOOTER */
+/* Favoritos e reservas */
+
+.titulo-minhasReservas,
+.titulo-favoritos {
+    padding: 70px 20px 40px;
+    text-align: center;
+}
+
+.minhas-reservas,
+.favoritos {
+    color: #ddd;
+}
+
+.PNG-reserva {
+    padding: 10px 0;
+}
+
+.PNG-favoritos {
+    margin: 10px 0 100px;
+}
+
+.titulo-evento {
+    padding: 10px 0 40px;
+}
+
+.titulocomedy {
+    padding-bottom: 20px;
+}
+
+.central-reserva {
+    padding-bottom: 10px;
+}
+
+.card-cmdvivaai {
+    font-size: 22px;
+}
+
+/* Footer */
 
 footer {
     margin-top: 60px;
@@ -373,120 +416,3 @@ footer img {
 footer p {
     font-size: 13px;
 }
-
-.minhas-reservas {
-    color: #ddd;
-}
-
-.titulo-minhasReservas {
-    padding: 140px 0px 0px 0px;
-}
-
-.PNG-reserva {
-    padding: 10px 0px 10px 0px;
-}
-
-.btn-cancelar {
-    padding: 12px;
-    border-radius: 17px;
-    margin: 30px 0px 0px 50px;
-    border: none;
-    background-color: #000;
-    color: white;
-}
-
-.reserva-favoritos {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 0px 10px 30px 10px;
-    margin: 0px 770px 40px 770px;
-    border: 1px solid #d15e00;
-    border-radius: 15px;
-    background: linear-gradient(145deg, #f36703, #ff8c24);
-    color: #fff;
-    box-shadow: 0 6px 15px #0000002e;
-    transition: 0.3s;
-}
-
-.titulo-favoritos {
-    padding: 70px 0px 80px 870px;
-}
-
-.favoritos {
-    color: #ddd;
-}
-
-.btn-favoritos {
-    padding: 8px;
-    border-radius: 7px;
-    margin: 30px 0px 0px 0px;
-    border: none;
-    color: white;
-    background-color: #000;
-}
-
-.PNG-favoritos {
-    padding: 0px;
-    margin: 10px 0px 100px 0px;
-}
-
-.btn-fr {
-    padding: 10px;
-    margin: 20px 8px 0px 0px;
-    color: white;
-    background-color: #000;
-    border: none;
-    border-radius: 20px;
-}
-
-.btn-fechar-dtl {
-    padding: 7px 10px 7px 10px;
-    margin: -10px 0px 0px 420px;
-    border-radius: 100%;
-    border: none;
-    color: white;
-    background-color: #000;
-}
-
-.btn-cancelar:hover {
-    cursor: pointer;
-    background-color: #291f18;
-}
-
-.btn-favoritos:hover {
-    cursor: pointer;
-    background-color: #291f18;
-}
-
-.btn-fechar-dtl:hover {
-    cursor: pointer;
-    background-color: #291f18;
-}
-
-.btn-fr:hover {
-    cursor: pointer;
-    background-color: #291f18;
-}
-
-.btn-saiba-mais:hover {
-    background-color: #291f18;
-}
-
-.titulo-evento {
-    padding: 10px 0px 40px 0px;
-}
-
-.titulocomedy {
-    padding: 0px 0px 20px 60px;
-}
-
-.central-reserva {
-    padding: 0px 0px 10px 0px;
-}
-
-.card-cmdvivaai {
-    font-size: 22px;
-}
-

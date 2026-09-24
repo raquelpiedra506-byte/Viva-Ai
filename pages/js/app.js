@@ -1,27 +1,23 @@
-// ABRIR E FECHAR CALENDÁRIO
+// ==================== CALENDÁRIO ====================
 
 const agenda = document.getElementById("agenda");
 const calendario = document.querySelector(".calendar");
 const fechar = document.getElementById("fechar");
 
-agenda.onclick = function(event) {
-    event.preventDefault();
+agenda?.addEventListener("click", e => {
+    e.preventDefault();
     calendario.style.display = "block";
-};
+});
 
-fechar.onclick = function() {
+fechar?.addEventListener("click", () => {
     calendario.style.display = "none";
-};
-
-
-// ELEMENTOS
+});
 
 const mesAno = document.getElementById("mes-ano");
 const dias = document.getElementById("dias-calendario");
 const eventos = document.getElementById("eventos");
-
-
-// DATA
+const btnAnterior = document.getElementById("btn-anterior");
+const btnProximo = document.getElementById("btn-proximo");
 
 let data = new Date();
 let ano = data.getFullYear();
@@ -33,285 +29,205 @@ const meses = [
     "Setembro", "Outubro", "Novembro", "Dezembro"
 ];
 
-
-// FORMATAR DATA
-
-function formatarData(data) {
-    let partes = data.split("-");
-    return partes[2] + "/" + partes[1] + "/" + partes[0];
-}
-
-
-// EVENTOS
+const formatarData = data => data.split("-").reverse().join("/");
 
 const eventosCalendario = {};
-
-dados.forEach(function(evento) {
-    eventosCalendario[evento.data] = evento["evento-novo"];
-});
-
-
-// CARREGAR CALENDÁRIO
+dados.forEach(e => eventosCalendario[e.data] = e["evento-novo"]);
 
 function carregarCalendario() {
+    if (!mesAno || !dias) return;
 
-    mesAno.textContent = meses[mes] + " de " + ano;
-
-    let primeiroDia = new Date(ano, mes, 1).getDay();
-    let ultimoDia = new Date(ano, mes + 1, 0).getDate();
-
+    mesAno.textContent = `${meses[mes]} de ${ano}`;
     dias.innerHTML = "";
 
-    // Espaços antes do primeiro dia
+    const primeiroDia = new Date(ano, mes, 1).getDay();
+    const ultimoDia = new Date(ano, mes + 1, 0).getDate();
 
-    for (let i = 0; i < primeiroDia; i++) {
+    for (let i = 0; i < primeiroDia; i++)
         dias.innerHTML += "<div></div>";
-    }
-
-    // Dias do mês
 
     for (let dia = 1; dia <= ultimoDia; dia++) {
+        const dataCompleta =
+            `${ano}-${String(mes + 1).padStart(2, "0")}-${String(dia).padStart(2, "0")}`;
 
-        let diaFormatado = String(dia).padStart(2, "0");
-        let mesFormatado = String(mes + 1).padStart(2, "0");
-
-        let dataCompleta =
-            ano + "-" + mesFormatado + "-" + diaFormatado;
-
-        let elemento = document.createElement("div");
-
+        const elemento = document.createElement("div");
         elemento.textContent = dia;
 
-        if (eventosCalendario[dataCompleta]) {
+        if (eventosCalendario[dataCompleta])
             elemento.classList.add("evento");
-        }
 
-        elemento.onclick = function() {
-            clicarDia(dataCompleta);
-        };
-
+        elemento.onclick = () => clicarDia(dataCompleta);
         dias.appendChild(elemento);
     }
 }
 
-
-// CLICAR NO DIA
-
 function clicarDia(data) {
-
     if (eventosCalendario[data]) {
-
         eventos.textContent =
-            "Evento em " + formatarData(data) +
-            ": " + eventosCalendario[data];
-
+            `Evento em ${formatarData(data)}: ${eventosCalendario[data]}`;
         return;
     }
 
-    let novoEvento = prompt(
-        "Adicionar evento para " + formatarData(data) + ":"
+    const novoEvento = prompt(
+        `Adicionar evento para ${formatarData(data)}:`
     );
 
-    if (novoEvento) {
+    if (!novoEvento) return;
 
-        eventosCalendario[data] = novoEvento;
+    eventosCalendario[data] = novoEvento;
+    carregarCalendario();
 
-        carregarCalendario();
-
-        eventos.textContent =
-            "Evento em " + formatarData(data) +
-            ": " + novoEvento;
-    }
+    eventos.textContent =
+        `Evento em ${formatarData(data)}: ${novoEvento}`;
 }
 
-
-// MÊS ANTERIOR
-
-document.getElementById("btn-anterior").onclick = function() {
-
-    mes--;
-
-    if (mes < 0) {
+btnAnterior?.addEventListener("click", () => {
+    if (--mes < 0) {
         mes = 11;
         ano--;
     }
-
     carregarCalendario();
-};
+});
 
-
-// PRÓXIMO MÊS
-
-document.getElementById("btn-proximo").onclick = function() {
-
-    mes++;
-
-    if (mes > 11) {
+btnProximo?.addEventListener("click", () => {
+    if (++mes > 11) {
         mes = 0;
         ano++;
     }
-
     carregarCalendario();
-};
-
-
-// INICIAR
+});
 
 carregarCalendario();
 
 
-// LISTA DE EVENTOS
+// ==================== LISTA DE EVENTOS ====================
 
 const listaEventos = document.getElementById("lista-eventos");
 const pesquisa = document.getElementById("pesquisa");
 const btnPesquisa = document.getElementById("btn-pesquisa");
-
-
-// MOSTRAR EVENTOS
+const select = document.getElementById("categorias");
 
 function mostrarEventos(lista) {
+    if (!listaEventos) return;
 
-    listaEventos.innerHTML = "";
-
-    if (lista.length == 0) {
-        listaEventos.innerHTML =
-            "<p>Nenhum evento encontrado.</p>";
-        return;
-    }
-
-    lista.forEach(function(evento) {
-
-        listaEventos.innerHTML += `
+    listaEventos.innerHTML = lista.length
+        ? lista.map(evento => `
             <div class="banner-novo">
-
                 <img src="${evento.imagem}" alt="${evento["evento-novo"]}">
-
-                <h5 class="data">
-                    ${formatarData(evento.data)}
-                </h5>
-
-                <h5 class="hora">
-                    ${evento.hora}
-                </h5>
-
-                <h6 class="preco">
-                    ${evento.preco}
-                </h6>
-
-                <h2 class="evento-novo">
-                    ${evento["evento-novo"]}
-                </h2>
-
+                <h5 class="data">${formatarData(evento.data)}</h5>
+                <h5 class="hora">${evento.hora}</h5>
+                <h6 class="preco">${evento.preco}</h6>
+                <h2 class="evento-novo">${evento["evento-novo"]}</h2>
                 <button class="btn-saiba-mais" data-id="${evento.id}">
                     Saiba mais
                 </button>
-
             </div>
-        `;
-    });
+        `).join("")
+        : "<p>Nenhum evento encontrado.</p>";
 }
-
-
-// PESQUISAR
 
 function pesquisar() {
+    const texto = pesquisa.value.toLowerCase();
 
-    let texto = pesquisa.value.toLowerCase();
-
-    let resultado = dados.filter(function(evento) {
-
-        return evento["evento-novo"]
-            .toLowerCase()
-            .includes(texto);
-    });
-
-    mostrarEventos(resultado);
+    mostrarEventos(
+        dados.filter(e =>
+            e["evento-novo"].toLowerCase().includes(texto)
+        )
+    );
 }
 
+btnPesquisa?.addEventListener("click", pesquisar);
+pesquisa?.addEventListener("input", pesquisar);
 
-// BOTÃO PESQUISAR
+select?.addEventListener("change", () => {
+    const categoria = select.value;
 
-btnPesquisa.onclick = pesquisar;
+    mostrarEventos(
+        categoria === "Todas"
+            ? dados
+            : dados.filter(e => e.categoria === categoria)
+    );
+});
 
+listaEventos?.addEventListener("click", e => {
+    if (!e.target.classList.contains("btn-saiba-mais")) return;
 
-// PESQUISAR ENQUANTO DIGITA
+    const evento = dados.find(
+        item => item.id === Number(e.target.dataset.id)
+    );
 
-pesquisa.oninput = pesquisar;
-
-
-// MOSTRAR TODOS
+    if (evento) mostrarDetalhes(evento);
+});
 
 mostrarEventos(dados);
 
 
-// FILTRAR POR CATEGORIA
-
-const categorias = document.getElementById("categorias");
-
-categorias.onchange = function() {
-
-    let categoria = categorias.value.toLowerCase();
-    let resultado = dados.filter(function(evento) {
-        return evento.categoria.toLowerCase() == categoria;
-    });
-
-    mostrarEventos(resultado);
-};
-
-
-// SAIBA MAIS
-
-listaEventos.onclick = function(event) {
-
-    if (!event.target.classList.contains("btn-saiba-mais")) {
-        return;
-    }
-
-    let id = Number(event.target.dataset.id);
-
-    let evento = dados.find(function(item) {
-        return item.id == id;
-    });
-
-    mostrarDetalhes(evento);
-};
-
-
-// DETALHES DO EVENTO
+// ==================== DETALHES ====================
 
 function mostrarDetalhes(evento) {
+    document.getElementById("detalhes-titulo").textContent = evento["evento-novo"];
+    document.getElementById("detalhes-imagem").src = evento.imagem;
+    document.getElementById("detalhes-descricao").textContent = evento.detalhes;
+    document.getElementById("detalhes-data").textContent = formatarData(evento.data);
+    document.getElementById("detalhes-hora").textContent = evento.hora;
+    document.getElementById("detalhes-preco").textContent = evento.preco;
+    document.getElementById("detalhes-vagas").textContent = evento.vaga;
 
-    document.getElementById("detalhes-titulo").textContent =
-        evento["evento-novo"];
+    const favorito = document.getElementById("btn-favorito");
 
-    document.getElementById("detalhes-imagem").src =
-        evento.imagem;
+    if (favorito) {
+        favorito.dataset.id = evento.id;
+        favorito.checked = verificarFavorito(evento.id);
+    }
 
-    document.getElementById("detalhes-descricao").textContent =
-        evento.detalhes;
-
-    document.getElementById("detalhes-data").textContent =
-        formatarData(evento.data);
-
-    document.getElementById("detalhes-hora").textContent =
-        evento.hora;
-
-    document.getElementById("detalhes-preco").textContent =
-        evento.preco;
-
-    document.getElementById("detalhes-vagas").textContent =
-        evento.vaga;
-
-    document.getElementById("detalhes-evento").style.display =
-        "block";
+    document.getElementById("detalhes-evento").style.display = "block";
 }
 
+document.getElementById("btn-fechar-detalhes")?.addEventListener("click", () => {
+    document.getElementById("detalhes-evento").style.display = "none";
+});
 
-// FECHAR DETALHES
 
-document.getElementById("btn-fechar-detalhes").onclick =
-    function() {
+// ==================== FAVORITOS ====================
 
-        document.getElementById("detalhes-evento").style.display =
-            "none";
-    };
+let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+
+const salvarFavoritos = () =>
+    localStorage.setItem("favoritos", JSON.stringify(favoritos));
+
+const verificarFavorito = id => favoritos.includes(id);
+
+function favoritar(id) {
+    favoritos = favoritos.includes(id)
+        ? favoritos.filter(f => f !== id)
+        : [...favoritos, id];
+
+    salvarFavoritos();
+}
+
+const btnFavorito = document.getElementById("btn-favorito");
+
+btnFavorito?.addEventListener("change", function () {
+    favoritar(Number(this.dataset.id));
+});
+
+
+// ==================== PÁGINA DE FAVORITOS ====================
+
+const listaFavoritos = document.getElementById("lista-favoritos");
+
+if (listaFavoritos) {
+    const eventosFavoritos = dados.filter(e => favoritos.includes(e.id));
+
+    listaFavoritos.innerHTML = eventosFavoritos.length
+        ? eventosFavoritos.map(evento => `
+            <div class="banner-novo">
+                <img src="${evento.imagem}" alt="${evento["evento-novo"]}">
+                <h5>${formatarData(evento.data)}</h5>
+                <h5>${evento.hora}</h5>
+                <h6>${evento.preco}</h6>
+                <h2>${evento["evento-novo"]}</h2>
+            </div>
+        `).join("")
+        : "<p>Nenhum evento favoritado.</p>";
+}
