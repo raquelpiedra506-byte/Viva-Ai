@@ -257,6 +257,9 @@ select,
 .banner-novo {
     width: 220px;
     min-height: 180px;
+}
+
+
 .reserva{
     display: flex;
     flex-direction: column;
