@@ -349,7 +349,7 @@ select,
     left: 50%;
     width: 500px;
     max-width: 90%;
-    height: 460px;
+    height: 485px;
     padding: 25px;
     transform: translate(-50%, -50%);
     background: linear-gradient(90deg, #823e13, #fc7712, #d75f14);
@@ -482,7 +482,7 @@ footer p {
 }
 
 .titulo-favoritos {
-    padding: 70px 0px 80px 870px;
+    padding: 50px 0px 80px 0px;
 }
 
 .PNG-reserva img {
