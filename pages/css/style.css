@@ -231,7 +231,9 @@ select,
 /* Eventos */
 
 #lista-eventos,
-.minhas-reservas {
+.minhas-reservas,
+#lista-favoritos,
+#lista-minhas-reservas {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
