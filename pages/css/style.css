@@ -428,7 +428,8 @@ footer {
 }
 
 .qr-ingresso{
-    display: none;
+    width: 65px;
+    height: 65px;
 }
 
 footer img {

@@ -905,7 +905,7 @@ if (listaMinhasReservas) {
                 .map(function (r) {
 
                     const qrSrc =
-                        "https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=" +
+                        "https://api.qrserver.com/v1/create-qr-code/?size=110x110&data="  +
                         encodeURIComponent(
                             r.codigo
                         );
