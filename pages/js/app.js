@@ -912,34 +912,23 @@ if (listaMinhasReservas) {
 
 
                     return `
-                        <div
-                            class="reserva"
-                            data-reserva-id="${r.id}"
-                        >
+                        <div class="reserva" data-reserva-id="${r.id}">
 
                             <div class="PNG-reserva">
-                                <img
-                                    src="${r.imagem}"
-                                    alt="${r.evento}"
-                                >
+                                <img src="${r.imagem}" alt="${r.evento}">
                             </div>
 
 
-                            <section
-                                class="informacoes-reserva"
-                            >
+                        <section
+                                class="informacoes-reserva">
 
-                                <div class="informacoes">
-
-                                    <div
-                                        class="titulo-evento"
-                                    >
+                                    <div class="titulo-evento">
                                         <h2>
                                             ${r.evento}
-                                            VIVA AI
                                         </h2>
                                     </div>
 
+                                <div class="informacoes">
 
                                     <p>
                                         <i class="fa-regular fa-calendar-days"></i>
@@ -994,18 +983,15 @@ if (listaMinhasReservas) {
 
 
                                     <div
-                                        class="ingresso-codigo"
-                                    >
+                                        class="ingresso-codigo">
 
                                         <img
                                             class="qr-ingresso"
                                             src="${qrSrc}"
-                                            alt="QR code do ingresso"
-                                        >
+                                            alt="QR code do ingresso">
 
                                         <span
-                                            class="codigo-ingresso"
-                                        >
+                                            class="codigo-ingresso">
                                             Código:
                                             ${r.codigo}
                                         </span>
@@ -1017,22 +1003,18 @@ if (listaMinhasReservas) {
                                         Reservado com sucesso!
                                     </span>
 
-                                </div>
-
-
-                                <label>
-
-                                    <button
-                                        type="button"
-                                        class="btn-cancelar"
-                                        data-reserva-id="${r.id}"
-                                    >
+                                    
+                                    
+                                    <label>
+                                    
+                                    <button type="button" class="btn-cancelar" data-reserva-id="${r.id}">
                                         Cancelar reserva
                                     </button>
-
-                                </label>
-
-                            </section>
+                                    
+                                    </label>
+                                    
+                                </div>
+                        </section>
 
                         </div>
                     `;
