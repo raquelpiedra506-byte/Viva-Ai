@@ -276,7 +276,7 @@ function mostrarEventos(lista) {
         card.className = "banner-novo";
 
         card.innerHTML = `
-            <img 
+            <img
                 src="${evento.imagem}" 
                 alt="${evento["evento-novo"]}"
             >
@@ -302,14 +302,11 @@ function mostrarEventos(lista) {
                     ? `<span class="lotado">LOTADO</span>`
                     : ""
             }
-
-            <button
-                class="btn-saiba-mais"
-                data-id="${evento.id}"
-                type="button"
-            >
-                Saiba mais
-            </button>
+            <div class="pai-btn">
+                <button class="btn-saiba-mais" data-id="${evento.id}" type="button">
+                    Saiba mais
+                </button>
+            </div>
         `;
 
         listaEventos.appendChild(card);
