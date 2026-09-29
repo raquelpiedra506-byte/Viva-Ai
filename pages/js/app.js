@@ -1,40 +1,43 @@
-// ==================== CALENDÁRIO ====================
-
-const agendaLink = document.getElementById("agenda");
+// CALENDÁRIO
+const agenda = document.getElementById("agenda");
 const calendario = document.querySelector(".calendar");
 const fechar = document.getElementById("fechar");
-
-agendaLink.addEventListener("click", function (event) {
-    event.preventDefault();
-    calendario.style.display = "block";
-});
-
-fechar.addEventListener("click", function () {
-    calendario.style.display = "none";
-});
-
-const mesAnoElm = document.getElementById("mes-ano");
-const diasElm = document.getElementById("dias-calendario");
-const eventosElm = document.getElementById("eventos");
-
+const mesAno = document.getElementById("mes-ano");
+const dias = document.getElementById("dias-calendario");
+const eventosCalElm = document.getElementById("eventos");
 const btnAnterior = document.getElementById("btn-anterior");
 const btnProximo = document.getElementById("btn-proximo");
 
-const dataAtual = new Date();
-let ano = dataAtual.getFullYear();
-let mes = dataAtual.getMonth();
+if (agenda && calendario) {
+    agenda.onclick = e => {
+        e.preventDefault();
+        calendario.style.display = "block";
+    };
+}
 
-const nomesMeses = [
-    "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
-    "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+if (fechar && calendario) {
+    fechar.onclick = () => calendario.style.display = "none";
+}
+
+let dataHoje = new Date();
+let ano = dataHoje.getFullYear();
+let mes = dataHoje.getMonth();
+
+const meses = [
+    "Janeiro", "Fevereiro", "Março", "Abril",
+    "Maio", "Junho", "Julho", "Agosto",
+    "Setembro", "Outubro", "Novembro", "Dezembro"
 ];
 
-// junta os eventos do dados.js num objeto { "2026-09-17": "Cinema" }
-const eventosCalendario = dados.reduce(function (acc, evento) {
-    acc[evento.data] = evento["evento-novo"];
-    return acc;
-}, {});
+const formatarData = data => data ? data.split("-").reverse().join("/") : "";
 
+const eventosCalendario = {};
+
+if (typeof dados !== "undefined" && Array.isArray(dados)) {
+    dados.forEach(e => {
+        if (e.data) eventosCalendario[e.data] = e["evento-novo"];
+    });
+}
 
 function carregarCalendario() {
 
@@ -43,75 +46,75 @@ function carregarCalendario() {
     const primeiroDiaIndex = new Date(ano, mes, 1).getDay();
     const ultimoDia = new Date(ano, mes + 1, 0).getDate();
 
-    diasElm.innerHTML = "";
-
-    for (let i = 0; i < primeiroDiaIndex; i++) {
+    for (let i = 0; i < primeiroDia; i++) {
         const espaco = document.createElement("div");
         diasElm.appendChild(espaco);
     }
 
     for (let dia = 1; dia <= ultimoDia; dia++) {
-
-        const diaStr = String(dia).padStart(2, "0");
-        const mesStr = String(mes + 1).padStart(2, "0");
-        const dataCompleta = ano + "-" + mesStr + "-" + diaStr;
+        const data = `${ano}-${String(mes + 1).padStart(2, "0")}-${String(dia).padStart(2, "0")}`;
+        const elemento = document.createElement("div");
 
         const diaElemento = document.createElement("div");
         diaElemento.textContent = dia;
 
-        if (eventosCalendario[dataCompleta]) {
-            diaElemento.classList.add("evento");
-        }
+        if (eventosCalendario[data]) elemento.classList.add("evento");
 
-        diaElemento.addEventListener("click", function () {
-            cliqueDia(dataCompleta);
-        });
-
-        diasElm.appendChild(diaElemento);
+        elemento.onclick = () => clicarDia(data);
+        dias.appendChild(elemento);
     }
 }
 
-
-function cliqueDia(data) {
+function clicarDia(data) {
+    if (!eventosCalElm) return;
 
     if (eventosCalendario[data]) {
-        eventosElm.innerHTML = "Evento em " + data + ": " + eventosCalendario[data];
+        eventosCalElm.textContent =
+            `Evento em ${formatarData(data)}: ${eventosCalendario[data]}`;
         return;
     }
 
-    const novoEvento = prompt("Adicionar evento para " + data + ":");
+    const novoEvento = prompt(`Adicionar evento para ${formatarData(data)}:`);
+    if (!novoEvento) return;
 
-    if (novoEvento) {
-        eventosCalendario[data] = novoEvento;
+    eventosCalendario[data] = novoEvento;
+    carregarCalendario();
+};
+
+    eventosCalElm.textContent =
+        `Evento em ${formatarData(data)}: ${novoEvento}`;
+
+
+if (btnAnterior) {
+    btnAnterior.addEventListener("click", () => {
+        mes--;
+
+        if (mes < 0) {
+            mes = 11;
+            ano--;
+        }
+
         carregarCalendario();
-        eventosElm.textContent = "Evento adicionado: " + novoEvento;
-    }
+    });
 }
 
+if (btnProximo) {
+    btnProximo.addEventListener("click", () => {
+        mes++;
 
-btnAnterior.addEventListener("click", function () {
-    mes--;
-    if (mes < 0) {
-        mes = 11;
-        ano--;
-    }
-    carregarCalendario();
-});
+        if (mes > 11) {
+            mes = 0;
+            ano++;
+        }
 
-btnProximo.addEventListener("click", function () {
-    mes++;
-    if (mes > 11) {
-        mes = 0;
-        ano++;
-    }
-    carregarCalendario();
-});
+        carregarCalendario();
+    });
+}
 
 carregarCalendario();
 
 
-// ==================== RESERVAS - FUNÇÕES ====================
-
+// RESERVAS
 const CHAVE_RESERVAS = "reservasViva";
 
 function obterReservas() {
@@ -127,23 +130,31 @@ function salvarReservas(lista) {
 }
 
 function ingressosReservados(eventoId) {
-    const reservas = obterReservas();
-    let total = 0;
-
-    reservas.forEach(function (r) {
-        if (r.eventoId === eventoId) {
-            total += Number(r.ingressos);
-        }
-    });
-
-    return total;
+    return obterReservas()
+        .filter(r => r.eventoId === eventoId)
+        .reduce((total, r) => total + Number(r.ingressos || 0), 0);
 }
 
 function vagasRestantes(evento) {
-    if (typeof evento.vaga !== "number") {
-        return null;
-    }
+    if (typeof evento.vaga !== "number") return null;
     return evento.vaga - ingressosReservados(evento.id);
+}
+
+function precoParaNumero(preco) {
+    if (typeof preco === "number") return preco;
+    if (!preco) return 0;
+
+    return Number(
+        String(preco)
+            .replace("R$", "")
+            .trim()
+            .replace(/\./g, "")
+            .replace(",", ".")
+    );
+}
+
+function numeroParaPreco(valor) {
+    return "R$ " + Number(valor || 0).toFixed(2).replace(".", ",");
 }
 
 function gerarCodigoIngresso() {
@@ -151,211 +162,184 @@ function gerarCodigoIngresso() {
 }
 
 
-// ==================== LISTAGEM, PESQUISA E FILTROS ====================
-
+// LISTAGEM E PESQUISA
 const listaEventos = document.getElementById("lista-eventos");
 const pesquisaInput = document.getElementById("pesquisa");
 const btnPesquisa = document.getElementById("btn-pesquisa");
 const categoriaSelect = document.getElementById("categorias");
 const dataInput = document.getElementById("data");
 
-
-function displayEventos(lista) {
+function mostrarEventos(lista) {
+    if (!listaEventos) return;
 
     listaEventos.innerHTML = "";
 
-    if (lista.length === 0) {
+    if (!Array.isArray(lista) || lista.length === 0) {
         listaEventos.innerHTML = "<p style='color: #fff;'>Nenhum evento encontrado.</p>";
         return;
     }
 
-    lista.forEach(function (e) {
+    lista.forEach(evento => {
+        const restantes = vagasRestantes(evento);
+        const lotado = restantes !== null && restantes <= 0;
 
-        const restantes = vagasRestantes(e);
-        let avisoLotado = "";
+        const card = document.createElement("div");
+        card.className = "banner-novo";
 
-        if (restantes !== null && restantes <= 0) {
-            avisoLotado = "<span class='lotado'>LOTADO</span>";
-        }
-
-        listaEventos.innerHTML += `
-            <div class="banner-novo">
-                <img src="${e.imagem}" alt="${e["evento-novo"]}">
-                <h5 class="data">${e.data}</h5>
-                <h5 class="hora">${e.hora}</h5>
-                <h6 class="preco">${e.preco}</h6>
-                <h2 class="evento-novo">${e["evento-novo"]}</h2>
-                ${avisoLotado}
-                <button class="btn-saiba-mais" data-id="${e.id}">
-                    Saiba mais
-                </button>
-            </div>
+        card.innerHTML = `
+            <img src="${evento.imagem}" alt="${evento["evento-novo"]}">
+            <h5 class="data">${formatarData(evento.data)}</h5>
+            <h5 class="hora">${evento.hora || ""}</h5>
+            <h6 class="preco">${evento.preco || ""}</h6>
+            <h2 class="evento-novo">${evento["evento-novo"] || ""}</h2>
+            ${lotado ? `<span class="lotado">LOTADO</span>` : ""}
+            <button class="btn-saiba-mais" data-id="${evento.id}" type="button">
+                Saiba mais
+            </button>
         `;
+
+        listaEventos.appendChild(card);
     });
 }
 
+function pesquisar() {
+    if (!pesquisa) return;
 
-// pesquisa por texto + categoria + data, tudo junto
-function aplicarFiltros() {
+    const texto = pesquisa.value.toLowerCase().trim();
 
-    const texto = pesquisaInput.value.toLowerCase().trim();
-    const categoria = categoriaSelect.value;
-    const dataEscolhida = dataInput.value;
+    const resultado = dados.filter(e =>
+        String(e["evento-novo"] || "").toLowerCase().includes(texto)
+    );
 
-    const resultado = dados.filter(function (e) {
-
-        const bateTexto = e["evento-novo"].toLowerCase().includes(texto);
-
-        let bateCategoria = true;
-        if (categoria && categoria !== "Todas" && categoria !== "Categorias") {
-            bateCategoria = e.categoria === categoria;
-        }
-
-        let bateData = true;
-        if (dataEscolhida) {
-            bateData = e.data === dataEscolhida;
-        }
-
-        return bateTexto && bateCategoria && bateData;
-    });
-
-    displayEventos(resultado);
+    mostrarEventos(resultado);
 }
 
+if (btnPesquisa) btnPesquisa.addEventListener("click", pesquisar);
+if (pesquisa) pesquisa.addEventListener("input", pesquisar);
+
+if (select) {
+    select.addEventListener("change", () => {
+        const categoria = select.value;
+
+        if (categoria === "Todas") {
+            mostrarEventos(dados);
+            return;
+        }
+
+        mostrarEventos(dados.filter(e => e.categoria === categoria));
+    });
+}
 
 if (listaEventos) {
+    listaEventos.addEventListener("click", e => {
+        const botao = e.target.closest(".btn-saiba-mais");
+        if (!botao) return;
 
-    if (btnPesquisa) {
-        btnPesquisa.addEventListener("click", aplicarFiltros);
-    }
+        const evento = dados.find(item => item.id === Number(botao.dataset.id));
 
-    if (pesquisaInput) {
-        pesquisaInput.addEventListener("input", aplicarFiltros);
-    }
-
-    if (categoriaSelect) {
-        categoriaSelect.addEventListener("change", function () {
-
-            if (categoriaSelect.value === "Todas") {
-                if (dataInput) {
-                    dataInput.value = "";
-                }
-                if (pesquisaInput) {
-                    pesquisaInput.value = "";
-                }
-            }
-
-            aplicarFiltros();
-        });
-    }
-
-    if (dataInput) {
-        dataInput.addEventListener("change", aplicarFiltros);
-    }
-
-    displayEventos(dados);
-
-    listaEventos.addEventListener("click", function (event) {
-
-        if (event.target.classList.contains("btn-saiba-mais")) {
-
-            const id = Number(event.target.dataset.id);
-            const evento = dados.find(function (e) {
-                return e.id === id;
-            });
-
-            mostrarDetalhes(evento);
-        }
+        if (evento) mostrarDetalhes(evento);
     });
 }
 
+if (typeof dados !== "undefined") mostrarEventos(dados);
 
-// ==================== DETALHES DO EVENTO ====================
 
+// DETALHES
 let eventoAtual = null;
 
 function mostrarDetalhes(evento) {
 
     eventoAtual = evento;
 
-    document.getElementById("detalhes-titulo").textContent = evento["evento-novo"];
-    document.getElementById("detalhes-imagem").src = evento.imagem;
-    document.getElementById("detalhes-descricao").textContent = evento.detalhes;
-    document.getElementById("detalhes-data").textContent = evento.data;
-    document.getElementById("detalhes-hora").textContent = evento.hora;
-    document.getElementById("detalhes-preco").textContent = evento.preco;
+    const titulo = document.getElementById("detalhes-titulo");
+    const imagem = document.getElementById("detalhes-imagem");
+    const descricao = document.getElementById("detalhes-descricao");
+    const data = document.getElementById("detalhes-data");
+    const hora = document.getElementById("detalhes-hora");
+    const preco = document.getElementById("detalhes-preco");
+    const vagas = document.getElementById("detalhes-vagas");
+    const modal = document.getElementById("detalhes-evento");
+
+    if (titulo) titulo.textContent = evento["evento-novo"];
+    if (imagem) imagem.src = evento.imagem;
+    if (descricao) descricao.textContent = evento.detalhes || "";
+    if (data) data.textContent = formatarData(evento.data);
+    if (hora) hora.textContent = evento.hora || "";
+    if (preco) preco.textContent = evento.preco || "";
+
+    const favorito = document.getElementById("btn-favorito");
+
+    if (favorito) {
+        favorito.dataset.id = evento.id;
+        favorito.checked = verificarFavorito(evento.id);
+    }
 
     const restantes = vagasRestantes(evento);
-    let lotado = false;
+    const lotado = restantes !== null && restantes <= 0;
 
-    if (restantes !== null && restantes <= 0) {
-        lotado = true;
+    if (vagas) {
+        vagas.textContent = restantes === null ? evento.vaga || "Livre" : restantes;
     }
 
-    if (restantes === null) {
-        document.getElementById("detalhes-vagas").textContent = evento.vaga;
-    } else {
-        document.getElementById("detalhes-vagas").textContent = restantes;
-    }
+    const avisoLotado = document.getElementById("detalhes-lotado");
 
-    document.getElementById("detalhes-lotado").hidden = !lotado;
+    if (avisoLotado) avisoLotado.hidden = !lotado;
 
     const inputQuantidade = document.getElementById("quantidade-ingressos");
 
-    if (lotado) {
-        inputQuantidade.value = 0;
-        inputQuantidade.disabled = true;
-    } else {
-        inputQuantidade.value = 1;
-        inputQuantidade.disabled = false;
-    }
+    if (inputQuantidade) {
+        inputQuantidade.value = lotado ? 0 : 1;
+        inputQuantidade.disabled = lotado;
 
-    if (restantes !== null) {
-        inputQuantidade.max = Math.max(0, restantes);
+        if (restantes !== null) {
+            inputQuantidade.max = Math.max(0, restantes);
+        } else {
+            inputQuantidade.removeAttribute("max");
+        }
     }
-
-    const favorito = document.getElementById("btn-favorito");
-    favorito.dataset.id = evento.id;
-    favorito.checked = verificarFavorito(evento.id);
 
     const btnReservar = document.getElementById("btn-reservar");
-    btnReservar.disabled = lotado;
 
-    document.getElementById("detalhes-evento").style.display = "block";
+    if (btnReservar) {
+        btnReservar.disabled = lotado;
+
+        const icone = btnReservar.querySelector("i");
+        const jaReservado = obterReservas().some(r => r.eventoId === evento.id);
+
+        if (icone) icone.classList.toggle("reservado", jaReservado);
+    }
+
+    if (modal) modal.style.display = "block";
 }
-
 
 const btnFecharDetalhes = document.getElementById("btn-fechar-detalhes");
 
 if (btnFecharDetalhes) {
-    btnFecharDetalhes.addEventListener("click", function () {
-        document.getElementById("detalhes-evento").style.display = "none";
-    });
+    btnFecharDetalhes.onclick = () => {
+        const modal = document.getElementById("detalhes-evento");
+        if (modal) modal.style.display = "none";
+    };
 }
 
 
-// ==================== FAVORITOS ====================
-
+// FAVORITOS
 let favoritos = [];
 
-const favoritosSalvos = localStorage.getItem("favoritos");
-if (favoritosSalvos) {
-    favoritos = JSON.parse(favoritosSalvos);
+try {
+    favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+} catch (erro) {
+    favoritos = [];
 }
 
-function salvarFavoritos() {
+const salvarFavoritos = () => {
     localStorage.setItem("favoritos", JSON.stringify(favoritos));
-}
+};
 
-function verificarFavorito(id) {
-    return favoritos.includes(id);
-}
+const verificarFavorito = id => favoritos.includes(id);
 
 function favoritar(id) {
     if (favoritos.includes(id)) {
-        favoritos = favoritos.filter(function (f) {
-            return f !== id;
-        });
+        favoritos = favoritos.filter(f => f !== id);
     } else {
         favoritos.push(id);
     }
@@ -371,48 +355,35 @@ if (btnFavorito) {
 }
 
 
-// ==================== PÁGINA DE FAVORITOS ====================
-
+// PÁGINA DE FAVORITOS
 const listaFavoritos = document.getElementById("lista-favoritos");
 
 if (listaFavoritos) {
+    const eventosFavoritos = dados.filter(e => favoritos.includes(e.id));
 
-    const eventosFavoritos = dados.filter(function (e) {
-        return favoritos.includes(e.id);
-    });
-
-    if (eventosFavoritos.length === 0) {
-        listaFavoritos.innerHTML = "<p>Nenhum evento favoritado.</p>";
-    } else {
-
-        eventosFavoritos.forEach(function (e) {
-            listaFavoritos.innerHTML += `
-                <div class="banner-novo">
-                    <img src="${e.imagem}" alt="${e["evento-novo"]}">
-                    <h5>${e.data}</h5>
-                    <h5>${e.hora}</h5>
-                    <h6>${e.preco}</h6>
-                    <h2>${e["evento-novo"]}</h2>
-                </div>
-            `;
-        });
-    }
+    listaFavoritos.innerHTML = eventosFavoritos.length
+        ? eventosFavoritos.map(evento => `
+            <div class="banner-novo">
+                <img src="${evento.imagem}" alt="${evento["evento-novo"]}">
+                <h5>${formatarData(evento.data)}</h5>
+                <h5>${evento.hora || ""}</h5>
+                <h6>${evento.preco || ""}</h6>
+                <h2>${evento["evento-novo"] || ""}</h2>
+            </div>
+        `).join("")
+        : "<p>Nenhum evento favoritado.</p>";
 }
 
 
-// ==================== RESERVAR ====================
-
+// RESERVAR
 const btnReservar = document.getElementById("btn-reservar");
 
 if (btnReservar) {
+    btnReservar.onclick = function () {
+        if (!eventoAtual) return;
 
-    btnReservar.addEventListener("click", function () {
-
-        if (!eventoAtual) {
-            return;
-        }
-
-        const quantidade = Number(document.getElementById("quantidade-ingressos").value);
+        const inputQuantidade = document.getElementById("quantidade-ingressos");
+        const quantidade = inputQuantidade ? Number(inputQuantidade.value) : 1;
         const restantes = vagasRestantes(eventoAtual);
 
         if (!quantidade || quantidade < 1) {
@@ -425,6 +396,8 @@ if (btnReservar) {
             return;
         }
 
+        const valorTotal = precoParaNumero(eventoAtual.preco) * quantidade;
+
         const reserva = {
             id: Date.now(),
             eventoId: eventoAtual.id,
@@ -434,6 +407,7 @@ if (btnReservar) {
             local: eventoAtual.local,
             imagem: eventoAtual.imagem,
             ingressos: quantidade,
+            valorTotal: valorTotal,
             codigo: gerarCodigoIngresso()
         };
 
@@ -441,84 +415,126 @@ if (btnReservar) {
         reservas.push(reserva);
         salvarReservas(reservas);
 
+        const icone = btnReservar.querySelector("i");
+
+        if (icone) icone.classList.add("reservado");
+
         alert(
             "Reserva confirmada!\n\n" +
-            eventoAtual["evento-novo"] + " — " + quantidade + " ingresso(s)\n" +
-            "Código: " + reserva.codigo
+            eventoAtual["evento-novo"] +
+            " — " +
+            quantidade +
+            " ingresso(s)\n" +
+            "Código: " +
+            reserva.codigo
         );
 
         mostrarDetalhes(eventoAtual);
-        displayEventos(dados);
-    });
+
+        if (listaEventos) mostrarEventos(dados);
+    };
 }
 
 
-// ==================== MINHAS RESERVAS ====================
-
+// MINHAS RESERVAS
 const listaMinhasReservas = document.getElementById("lista-minhas-reservas");
 
 if (listaMinhasReservas) {
-    renderizarMinhasReservas();
+    function renderizarMinhasReservas() {
+        const reservas = obterReservas();
 
-    listaMinhasReservas.addEventListener("click", function (event) {
-
-        if (!event.target.classList.contains("btn-cancelar")) {
+        if (reservas.length === 0) {
+            listaMinhasReservas.innerHTML = `
+                <p class="sem-reservas">
+                    Você ainda não fez nenhuma reserva.
+                </p>
+            `;
             return;
         }
 
-        const id = Number(event.target.dataset.reservaId);
+        listaMinhasReservas.innerHTML = reservas.map(r => {
+            const qrSrc =
+                "https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=" +
+                encodeURIComponent(r.codigo);
 
-        const reservas = obterReservas().filter(function (r) {
-            return r.id !== id;
-        });
+            return `
+                <div class="reserva" data-reserva-id="${r.id}">
+                    <div class="PNG-reserva">
+                        <img src="${r.imagem}" alt="${r.evento}">
+                    </div>
+
+                    <section class="informacoes-reserva">
+                        <div class="titulo-evento">
+                            <h2>${r.evento}</h2>
+                        </div>
+
+                        <div class="informacoes">
+                            <p>
+                                <i class="fa-regular fa-calendar-days"></i>
+                                <span>Data: ${formatarData(r.data)}</span>
+                            </p>
+
+                            <p>
+                                <i class="fa-regular fa-clock"></i>
+                                <span>Hora: ${r.hora || "A definir"}</span>
+                            </p>
+
+                            <p>
+                                <i class="fa-solid fa-map-location-dot"></i>
+                                <span>Local: ${r.local || "A definir"}</span>
+                            </p>
+
+                            <p>
+                                <i class="fa-solid fa-ticket"></i>
+                                <span>Quantidade de ingressos: ${r.ingressos}</span>
+                            </p>
+
+                            <p>
+                                <i class="fa-solid fa-dollar-sign"></i>
+                                <span>Valor total: ${numeroParaPreco(r.valorTotal)}</span>
+                            </p>
+
+                            <div class="ingresso-codigo">
+                                <img
+                                    class="qr-ingresso"
+                                    src="${qrSrc}"
+                                    alt="QR code do ingresso"
+                                >
+
+                                <span class="codigo-ingresso">
+                                    Código: ${r.codigo}
+                                </span>
+                            </div>
+
+                            <span>Reservado com sucesso!</span>
+
+                            <label>
+                                <button
+                                    type="button"
+                                    class="btn-cancelar"
+                                    data-reserva-id="${r.id}"
+                                >
+                                    Cancelar reserva
+                                </button>
+                            </label>
+                        </div>
+                    </section>
+                </div>
+            `;
+        }).join("");
+    }
+
+    listaMinhasReservas.onclick = event => {
+        const botao = event.target.closest(".btn-cancelar");
+        if (!botao) return;
+
+        const id = Number(botao.dataset.reservaId);
+
+        const reservas = obterReservas().filter(r => r.id !== id);
 
         salvarReservas(reservas);
         renderizarMinhasReservas();
-    });
-}
+    };
 
-function renderizarMinhasReservas() {
-
-    const reservas = obterReservas();
-
-    if (reservas.length === 0) {
-        listaMinhasReservas.innerHTML = "<p class='sem-reservas'>Você ainda não fez nenhuma reserva.</p>";
-        return;
-    }
-
-    listaMinhasReservas.innerHTML = "";
-
-    reservas.forEach(function (r) {
-
-        const qrSrc = "https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=" + encodeURIComponent(r.codigo);
-
-        listaMinhasReservas.innerHTML += `
-            <div class="reserva" data-reserva-id="${r.id}">
-                <div class="PNG-reserva">
-                    <img src="${r.imagem}" alt="${r.evento}">
-                </div>
-                <section class="informacoes-reserva">
-                    <div class="titulo-evento">
-                        <h2>${r.evento}</h2>
-                    </div>
-                    <div class="informacoes">
-                        <p><i class="fa-regular fa-calendar-days"></i> Data: ${r.data}</p>
-                        <p><i class="fa-regular fa-clock"></i> Hora: ${r.hora || "A definir"}</p>
-                        <p><i class="fa-solid fa-map-location-dot"></i> Local: ${r.local || "A definir"}</p>
-                        <p><i class="fa-solid fa-ticket"></i> Quantidade de ingressos: ${r.ingressos}</p>
-                        <div class="ingresso-codigo">
-                            <img class="qr-ingresso" src="${qrSrc}" alt="QR code do ingresso">
-                            <span class="codigo-ingresso">Código: ${r.codigo}</span>
-                        </div>
-                        <span>Reservado com sucesso!</span>
-                        <label>
-                            <button type="button" class="btn-cancelar" data-reserva-id="${r.id}">
-                                Cancelar reserva
-                            </button>
-                        </label>
-                    </div>
-                </section>
-            </div>
-        `;
-    });
+    renderizarMinhasReservas();
 }
