@@ -40,23 +40,24 @@ if (typeof dados !== "undefined" && Array.isArray(dados)) {
 }
 
 function carregarCalendario() {
+    if (!mesAno || !dias) return;
 
-    mesAnoElm.textContent = nomesMeses[mes] + " de " + ano;
+    mesAno.textContent = meses[mes] + " de " + ano;
+    dias.innerHTML = "";
 
     const primeiroDiaIndex = new Date(ano, mes, 1).getDay();
     const ultimoDia = new Date(ano, mes + 1, 0).getDate();
 
-    for (let i = 0; i < primeiroDia; i++) {
+    for (let i = 0; i < primeiroDiaIndex; i++) {
         const espaco = document.createElement("div");
-        diasElm.appendChild(espaco);
+        dias.appendChild(espaco);
     }
 
     for (let dia = 1; dia <= ultimoDia; dia++) {
         const data = `${ano}-${String(mes + 1).padStart(2, "0")}-${String(dia).padStart(2, "0")}`;
         const elemento = document.createElement("div");
 
-        const diaElemento = document.createElement("div");
-        diaElemento.textContent = dia;
+        elemento.textContent = dia;
 
         if (eventosCalendario[data]) elemento.classList.add("evento");
 
@@ -79,11 +80,10 @@ function clicarDia(data) {
 
     eventosCalendario[data] = novoEvento;
     carregarCalendario();
-};
 
     eventosCalElm.textContent =
         `Evento em ${formatarData(data)}: ${novoEvento}`;
-
+}
 
 if (btnAnterior) {
     btnAnterior.addEventListener("click", () => {
@@ -162,7 +162,7 @@ function gerarCodigoIngresso() {
 }
 
 
-// LISTAGEM E PESQUISA
+// LISTAGEM, PESQUISA E FILTROS
 const listaEventos = document.getElementById("lista-eventos");
 const pesquisaInput = document.getElementById("pesquisa");
 const btnPesquisa = document.getElementById("btn-pesquisa");
@@ -202,31 +202,46 @@ function mostrarEventos(lista) {
     });
 }
 
-function pesquisar() {
-    if (!pesquisa) return;
+// pesquisa por texto + categoria + data, tudo junto
+function aplicarFiltros() {
+    const texto = pesquisaInput ? pesquisaInput.value.toLowerCase().trim() : "";
+    const categoria = categoriaSelect ? categoriaSelect.value : "Todas";
+    const dataEscolhida = dataInput ? dataInput.value : "";
 
-    const texto = pesquisa.value.toLowerCase().trim();
+    const resultado = dados.filter(e => {
+        const bateTexto = String(e["evento-novo"] || "").toLowerCase().includes(texto);
 
-    const resultado = dados.filter(e =>
-        String(e["evento-novo"] || "").toLowerCase().includes(texto)
-    );
+        let bateCategoria = true;
+        if (categoria && categoria !== "Todas" && categoria !== "Categorias") {
+            bateCategoria = e.categoria === categoria;
+        }
+
+        let bateData = true;
+        if (dataEscolhida) {
+            bateData = e.data === dataEscolhida;
+        }
+
+        return bateTexto && bateCategoria && bateData;
+    });
 
     mostrarEventos(resultado);
 }
 
-if (btnPesquisa) btnPesquisa.addEventListener("click", pesquisar);
-if (pesquisa) pesquisa.addEventListener("input", pesquisar);
+if (btnPesquisa) btnPesquisa.addEventListener("click", aplicarFiltros);
+if (pesquisaInput) pesquisaInput.addEventListener("input", aplicarFiltros);
 
-if (select) {
-    select.addEventListener("change", () => {
-        const categoria = select.value;
+if (dataInput) dataInput.addEventListener("change", aplicarFiltros);
 
-        if (categoria === "Todas") {
-            mostrarEventos(dados);
-            return;
+if (categoriaSelect) {
+    categoriaSelect.addEventListener("change", () => {
+
+        // "Todos os eventos" reseta os outros filtros também
+        if (categoriaSelect.value === "Todas") {
+            if (dataInput) dataInput.value = "";
+            if (pesquisaInput) pesquisaInput.value = "";
         }
 
-        mostrarEventos(dados.filter(e => e.categoria === categoria));
+        aplicarFiltros();
     });
 }
 
@@ -439,91 +454,91 @@ if (btnReservar) {
 // MINHAS RESERVAS
 const listaMinhasReservas = document.getElementById("lista-minhas-reservas");
 
-if (listaMinhasReservas) {
-    function renderizarMinhasReservas() {
-        const reservas = obterReservas();
+function renderizarMinhasReservas() {
+    const reservas = obterReservas();
 
-        if (reservas.length === 0) {
-            listaMinhasReservas.innerHTML = `
-                <p class="sem-reservas">
-                    Você ainda não fez nenhuma reserva.
-                </p>
-            `;
-            return;
-        }
-
-        listaMinhasReservas.innerHTML = reservas.map(r => {
-            const qrSrc =
-                "https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=" +
-                encodeURIComponent(r.codigo);
-
-            return `
-                <div class="reserva" data-reserva-id="${r.id}">
-                    <div class="PNG-reserva">
-                        <img src="${r.imagem}" alt="${r.evento}">
-                    </div>
-
-                    <section class="informacoes-reserva">
-                        <div class="titulo-evento">
-                            <h2>${r.evento}</h2>
-                        </div>
-
-                        <div class="informacoes">
-                            <p>
-                                <i class="fa-regular fa-calendar-days"></i>
-                                <span>Data: ${formatarData(r.data)}</span>
-                            </p>
-
-                            <p>
-                                <i class="fa-regular fa-clock"></i>
-                                <span>Hora: ${r.hora || "A definir"}</span>
-                            </p>
-
-                            <p>
-                                <i class="fa-solid fa-map-location-dot"></i>
-                                <span>Local: ${r.local || "A definir"}</span>
-                            </p>
-
-                            <p>
-                                <i class="fa-solid fa-ticket"></i>
-                                <span>Quantidade de ingressos: ${r.ingressos}</span>
-                            </p>
-
-                            <p>
-                                <i class="fa-solid fa-dollar-sign"></i>
-                                <span>Valor total: ${numeroParaPreco(r.valorTotal)}</span>
-                            </p>
-
-                            <div class="ingresso-codigo">
-                                <img
-                                    class="qr-ingresso"
-                                    src="${qrSrc}"
-                                    alt="QR code do ingresso"
-                                >
-
-                                <span class="codigo-ingresso">
-                                    Código: ${r.codigo}
-                                </span>
-                            </div>
-
-                            <span>Reservado com sucesso!</span>
-
-                            <label>
-                                <button
-                                    type="button"
-                                    class="btn-cancelar"
-                                    data-reserva-id="${r.id}"
-                                >
-                                    Cancelar reserva
-                                </button>
-                            </label>
-                        </div>
-                    </section>
-                </div>
-            `;
-        }).join("");
+    if (reservas.length === 0) {
+        listaMinhasReservas.innerHTML = `
+            <p class="sem-reservas">
+                Você ainda não fez nenhuma reserva.
+            </p>
+        `;
+        return;
     }
 
+    listaMinhasReservas.innerHTML = reservas.map(r => {
+        const qrSrc =
+            "https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=" +
+            encodeURIComponent(r.codigo);
+
+        return `
+            <div class="reserva" data-reserva-id="${r.id}">
+                <div class="PNG-reserva">
+                    <img src="${r.imagem}" alt="${r.evento}">
+                </div>
+
+                <section class="informacoes-reserva">
+                    <div class="titulo-evento">
+                        <h2>${r.evento}</h2>
+                    </div>
+
+                    <div class="informacoes">
+                        <p>
+                            <i class="fa-regular fa-calendar-days"></i>
+                            <span>Data: ${formatarData(r.data)}</span>
+                        </p>
+
+                        <p>
+                            <i class="fa-regular fa-clock"></i>
+                            <span>Hora: ${r.hora || "A definir"}</span>
+                        </p>
+
+                        <p>
+                            <i class="fa-solid fa-map-location-dot"></i>
+                            <span>Local: ${r.local || "A definir"}</span>
+                        </p>
+
+                        <p>
+                            <i class="fa-solid fa-ticket"></i>
+                            <span>Quantidade de ingressos: ${r.ingressos}</span>
+                        </p>
+
+                        <p>
+                            <i class="fa-solid fa-dollar-sign"></i>
+                            <span>Valor total: ${numeroParaPreco(r.valorTotal)}</span>
+                        </p>
+
+                        <div class="ingresso-codigo">
+                            <img
+                                class="qr-ingresso"
+                                src="${qrSrc}"
+                                alt="QR code do ingresso"
+                            >
+
+                            <span class="codigo-ingresso">
+                                Código: ${r.codigo}
+                            </span>
+                        </div>
+
+                        <span>Reservado com sucesso!</span>
+
+                        <label>
+                            <button
+                                type="button"
+                                class="btn-cancelar"
+                                data-reserva-id="${r.id}"
+                            >
+                                Cancelar reserva
+                            </button>
+                        </label>
+                    </div>
+                </section>
+            </div>
+        `;
+    }).join("");
+}
+
+if (listaMinhasReservas) {
     listaMinhasReservas.onclick = event => {
         const botao = event.target.closest(".btn-cancelar");
         if (!botao) return;
