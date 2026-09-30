@@ -262,8 +262,6 @@ select,
     background: linear-gradient(145deg, #f36703, #ff8c24);
     color: #fff;
     box-shadow: 0 6px 15px #0000002e;
-    width: 220px;
-    height: 100%;
     flex: 0 0 260px;
 }
 
@@ -279,14 +277,12 @@ select,
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: none;
+
+    border: 1px solid #d15e00;
     border-radius: 15px;
     background: linear-gradient(145deg, #f36703, #ff8c24);
     color: #fff;
     box-shadow: 0 6px 15px #0000002e;
-    margin: 10px;
-    padding-bottom: 30px;
-    height: 100%;
     flex: 0 0 260px;
 }
 
@@ -326,8 +322,9 @@ select,
     color: #fefbfb;
     cursor: pointer;
     padding: 12px;
+    margin: 20px 0px 20px 60px;
     border-radius: 17px;
-    margin-top: auto;
+    
 }
 
 .btn-favoritos {
@@ -466,7 +463,7 @@ select,
 }
 
 .titulo-evento {
-    padding: 10px 0 40px;
+    padding: 10px 0 20px;
 
 }
 
@@ -474,26 +471,8 @@ select,
     padding-bottom: 20px;
 }
 
-.central-reserva {
-    padding-bottom: 10px;
-}
-
 .card-cmdvivaai {
     font-size: 22px;
-}
-
-.informacoes-reserva {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 250px;
-    min-height: 180px;
-    border: none;
-    border-radius: 15px;
-    color: #fff;
-    transition: 0.3s;
-    height: 100%;
-    flex: 0 0 260px;
 }
 
 .informacoes{
