@@ -204,7 +204,7 @@ function mostrarEventos(lista) {
 }
 
 // pesquisa por texto + categoria + data, tudo junto
-function aplicarFiltros() {
+function aplicarFiltros() {  
     const texto = pesquisaInput ? pesquisaInput.value.toLowerCase().trim() : "";
     const categoria = categoriaSelect ? categoriaSelect.value : "Todas";
     const dataEscolhida = dataInput ? dataInput.value : "";
@@ -222,7 +222,7 @@ function aplicarFiltros() {
             bateData = e.data === dataEscolhida;
         }
 
-        return bateTexto && bateCategoria && bateData;
+        return bateTexto;
     });
 
     mostrarEventos(resultado);
