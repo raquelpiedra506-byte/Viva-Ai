@@ -1,80 +1,56 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Viva ai</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+            <title>Viva AI</title>
+
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-        <link href="../pages/css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="../pages/css/style.css">
+
         <script src="../pages/js/dados.js" defer></script>
         <script src="../pages/js/app.js" defer></script>
-        
     </head>
-    
+
     <body>
-        
-                <header>
-        
-                    <div id="logo">
-                        <h1><strong>V</strong>iva <strong>Ai</strong></h1>
-                    </div>
-        
-                    <nav id="menu">
-                        <ul class="menu-navegacao">
-                        
-                            <li><a href="inicio.html">Inicio</a></li>
-                        
-                            <li id="agenda">
-                        <a href="#">Agenda</a>
-                        </li>
-                        
-                            <li><a href="../pages/favoritos.html">Favorito</a></li>
-                        
-                            <li><a href="../pages/minhas-reservas.html">Minhas reservas</a></li>
-                        
-                        </ul>
-                        
-                        <div class="calendar">
-                        
-                            <button type="button" id="fechar">X</button>
-                        
-                            <div class="header-agenda" id="mes-ano"></div>
-                        
-                            <div class="semanas">
-                                <div>Dom</div>
-                                <div>Seg</div>
-                                <div>Ter</div>
-                                <div>Qua</div>
-                                <div>Qui</div>
-                                <div>Sex</div>
-                                <div>Sáb</div>
-                            </div>
-                        
-                            <div class="dias" id="dias-calendario"></div>
-                        
-                            <div class="eventos" id="eventos"></div>
-                        
-                            <div class="btn-agenda">
-                        <button type="button" id="btn-anterior">Anterior</button>
-                        <button type="button" id="btn-proximo">Próximo</button>
-                        </div>
-                        
-                        </div>
-                    </nav>
-        
-                    <button type="button">
-                        <i class="fa-solid fa-user"></i>
-                    </button>
-        
-                </header> 
-        
+
+        <header>
+        <div id="logo"><h1> <strong>V</strong>iva <strong>Ai</strong></h1></div>
+
+        <nav id="menu">
+            <ul class="menu-navegacao">
+                <li><a href="inicio.html">Inicio</a></li>
+                <li id="agenda"><a href="#">Agenda</a></li>
+                <li><a href="../pages/favoritos.html">Favorito</a></li>
+                <li><a href="../pages/minhas-reservas.html">Minhas reservas</a></li>
+            </ul>
+
+            <div class="calendar">
+                <button type="button" id="fechar">X</button>
+                <div class="header-agenda" id="mes-ano"></div>
+                <div class="semanas">
+                    <div>Dom</div><div>Seg</div><div>Ter</div><div>Qua</div><div>Qui</div><div>Sex</div><div>Sáb</div>
+                </div>
+
+                <div class="dias" id="dias-calendario"></div>
+                <div class="eventos" id="eventos"></div>
+                <div class="btn-agenda">
+
+                <button type="button" id="btn-anterior">Anterior</button>
+                <button type="button" id="btn-proximo">Próximo</button>
+                </div>
+            </div>
+        </nav>
+
+            <button type="button"><i class="fa-solid fa-user"></i></button>
+        </header>
+
         <main>
             <section class="conteudo-principal">
-
-                    <div class="conteudo-banner">
-                        <img src="../pages/assents/img/vivaaibanner.png" alt="Logo Viva Ai">
-                    </div>
+                <div class="conteudo-banner">
+                    <img src="../pages/assents/img/vivaaibanner.png" alt="Logo Viva Ai">
+                </div>
 
                 <form>
                     <select id="categorias">
@@ -90,77 +66,49 @@
                     </select>
 
                     <input type="date" id="data">
-                        <!--<option>Escolher data</option>-->
-                    </input>
 
                     <div class="pesquisa-container">
                         <label for="pesquisa">
-                            <input placeholder="Pesquisa" type="text" id="pesquisa">
-                           
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                                Pesquisar
-
+                        <input placeholder="Pesquisa" type="text" id="pesquisa">
+                        <i class="fa-solid fa-magnifying-glass"></i> Pesquisar
                         </label>
                     </div>
-
                 </form>
             </section>
 
             <article>
                 <div id="lista-eventos"></div>
 
-                    <div id="detalhes-evento">
+                <div id="detalhes-evento">
+                    <button class="btn-fechar-dtl" id="btn-fechar-detalhes">X</button>
 
-                        <button class="btn-fechar-dtl" id="btn-fechar-detalhes">
-                            X
-                        </button>
+                    <div class="detalhes-conteudo">
+                        <h2 id="detalhes-titulo"></h2>
+                        <img id="detalhes-imagem">
+                        <p id="detalhes-descricao"></p>
 
-                        <div class="detalhes-conteudo">
+                        <p><strong>Data:</strong> <span id="detalhes-data"></span></p>
+                        <p><strong>Hora:</strong> <span id="detalhes-hora"></span></p>
+                        <p><strong>Preço:</strong> <span id="detalhes-preco"></span></p>
+                        <p><strong>Vagas:</strong> <span id="detalhes-vagas"></span></p>
 
-                            <h2 id="detalhes-titulo"></h2>
-                            <img id="detalhes-imagem">
-                            <p id="detalhes-descricao"></p>
+                        <p id="detalhes-lotado" class="aviso-lotado" hidden>Evento lotado — sem vagas disponíveis.</p>
 
-                            <p>
-                                <strong>Data:</strong>
-                                <span id="detalhes-data"></span>
-                            </p>
-                            <p>
-                                <strong>Hora:</strong>
-                                <span id="detalhes-hora"></span>
-                            </p>
-                            <p>
-                                <strong>Preço:</strong>
-                                <span id="detalhes-preco"></span>
-                            </p>
-                            <p>
-                                <strong>Vagas:</strong>
-                                <span id="detalhes-vagas"></span>
-                            </p>
-
-                            <p id="detalhes-lotado" class="aviso-lotado" hidden>Evento lotado — sem vagas disponíveis.</p>
-
-                            <div class="campo-ingressos">
-                                <label for="quantidade-ingressos">Quantidade de ingressos:</label>
-                                <input type="number" style="color: rgb(0, 0, 0);" id="quantidade-ingressos" min="1" value="1">
-                            </div>
-
-                            <label class="btn-fr2">
-                                <input type="checkbox" class="btn-favoritar" id="btn-favorito">
-                                <i class="fa-regular fa-heart"></i>
-                                Favoritar
-                            </label>
-
-                            <button class="btn-fr" id="btn-reservar">
-                                <i class="fa-solid fa-ticket"></i>
-                                Reservar
-                            </button>
-
+                        <div class="campo-ingressos">
+                            <label for="quantidade-ingressos">Quantidade de ingressos:</label>
+                            <input type="number" style="color:rgb(0,0,0)" id="quantidade-ingressos" min="1" value="1">
                         </div>
 
+                        <label class="btn-fr2">
+                            <input type="checkbox" class="btn-favoritar" id="btn-favorito">
+                            <i class="fa-regular fa-heart"></i> Favoritar
+                        </label>
 
+                        <button class="btn-fr" id="btn-reservar">
+                            <i class="fa-solid fa-ticket"></i> Reservar
+                        </button>
+                    </div>
                 </div>
-
             </article>
 
             <footer>
@@ -168,6 +116,6 @@
                 <p>&copy; 2026 VIVA AI. Todos os direitos reservados.</p>
             </footer>
         </main>
-    </body>
 
+    </body>
 </html>

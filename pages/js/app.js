@@ -20,6 +20,7 @@ if (fechar && calendario) {
 }
 
 let dataHoje = new Date();
+
 let ano = dataHoje.getFullYear();
 let mes = dataHoje.getMonth();
 
